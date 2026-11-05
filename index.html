@@ -1,0 +1,3657 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f0f11" />
+    <meta name="description" content="王子轩 UX/UI/AI Design 作品集，2022-2026。" />
+    <title>WANGZIXUAN PORTFOLIO | 2026</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        background: #fff;
+      }
+
+      @font-face {
+        font-family: "FZ Yuejin";
+        src: url("assets/about-intro/fz-yuejin.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "FZ Yuejin Portfolio";
+        src: url("assets/about-intro/fz-yuejin-portfolio.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+
+      html, body { margin: 0; min-height: 100%; }
+
+      html { scroll-behavior: auto; }
+
+      body { background: #0f0f11; }
+
+      main {
+        position: relative;
+        width: min(100%, 1440px);
+        margin-inline: auto;
+        aspect-ratio: 720 / 446;
+        overflow: hidden;
+      }
+
+      .about {
+        position: relative;
+        width: min(100%, 1440px);
+        margin-inline: auto;
+        aspect-ratio: 1440 / 1625;
+        overflow: hidden;
+        background: #0f0f11;
+        container-type: inline-size;
+      }
+
+      .about-dot-field {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 700ms ease;
+      }
+
+      .about.is-visible .about-dot-field { opacity: 0.5; }
+
+      .about-intro {
+        position: absolute;
+        z-index: 4;
+        top: calc(12.4% - 1.528cqw - 30px);
+        left: calc(4.45% - 10px);
+        display: flex;
+        width: max-content;
+        height: calc(3.056cqw + 20px);
+        align-items: center;
+        gap: 2.29cqw;
+        padding: 10px;
+        background: #0f0f11;
+      }
+
+      .about-intro-name {
+        flex: 0 0 8.889cqw;
+        margin: 0;
+        overflow: visible;
+        color: #fff;
+        font-family: "FZ Yuejin", sans-serif;
+        font-size: 3.056cqw;
+        font-weight: 400;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .intro-char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(.55em);
+      }
+
+      .about-intro.is-active .intro-char {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 1250ms cubic-bezier(.18,.68,.24,1), transform 1250ms cubic-bezier(.18,.68,.24,1);
+        transition-delay: var(--intro-delay, 0ms);
+      }
+
+      .about-intro-tags {
+        display: flex;
+        align-items: center;
+        gap: 1.111cqw;
+      }
+
+      .about-intro-tag-frame {
+        position: relative;
+        display: block;
+        flex: none;
+        height: 3.056cqw;
+        opacity: 0;
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path 900ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;
+      }
+
+      .about-intro-tag-frame:nth-child(1) { width: 14.583cqw; }
+      .about-intro-tag-frame:nth-child(2) { width: 10.833cqw; }
+      .about-intro-tag-frame:nth-child(3) { width: 10.799cqw; }
+
+      .about-intro-tag-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
+      .about-intro-tag-shine {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .about-intro.is-active .about-intro-tag-frame {
+        opacity: 1;
+        clip-path: inset(0);
+      }
+
+      .about-intro.is-active .about-intro-tag-frame:nth-child(1) { transition-delay: 100ms; }
+      .about-intro.is-active .about-intro-tag-frame:nth-child(2) { transition-delay: 220ms; }
+      .about-intro.is-active .about-intro-tag-frame:nth-child(3) { transition-delay: 340ms; }
+
+      .about.is-visible:not(.has-intro-complete) .about-story,
+      .about.is-visible:not(.has-intro-complete) .about-profile { opacity: 0; }
+
+      .about.is-visible.has-intro-complete .about-story,
+      .about.is-visible.has-intro-complete .about-profile { opacity: 1; }
+
+      .about-story,
+      .about-profile { transition: none; }
+
+      .about-story img,
+      .about-profile img {
+        opacity: 0;
+        clip-path: inset(0 0 100% 0);
+        transition: opacity 2s ease, clip-path 2s cubic-bezier(.2,.7,.2,1), filter 2s ease;
+      }
+
+      .about.is-visible.has-intro-complete .about-story img,
+      .about.is-visible.has-intro-complete .about-profile img {
+        opacity: 1;
+        clip-path: inset(0);
+        filter: blur(0);
+      }
+
+      @media (max-width: 760px) {
+        .experience-gallery { inset: 75.5% 0 0; padding: 4.6% 4% 0; }
+        .experience-track { gap: 1.8%; height: 82%; }
+        .experience-card img { border-radius: 8px; }
+        .experience-card.is-active { flex-grow: 3.2; }
+        .experience-card:nth-child(n + 4).is-active img { flex-basis: 240px; height: 240px; }
+        .experience-caption { flex-basis: 20px; margin-top: 8px; font-size: 13px; line-height: 20px; }
+      }
+
+      .about-layer {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 650ms ease;
+        pointer-events: none;
+      }
+
+      .about-layer img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        filter: blur(12px);
+        transition: filter 800ms ease;
+      }
+
+      .about-title { visibility: hidden; }
+      .about-story {
+        clip-path: polygon(0 16.5%, 71% 16.5%, 71% 44%, 0 44%);
+        transform: translateY(-20px);
+      }
+      .about-profile { clip-path: polygon(70.8% 6.1%, 100% 6.1%, 100% 48.2%, 70.8% 48.2%); }
+      .about-achievements { clip-path: polygon(0 47.4%, 100% 47.4%, 100% 100%, 0 100%); }
+      .about-top-mask {
+        position: absolute;
+        z-index: 2;
+        inset: 0 0 auto;
+        height: 6.2%;
+        background: #0f0f11;
+        pointer-events: none;
+      }
+
+      .about.is-visible .about-layer { opacity: 1; }
+      .about.is-visible .about-layer img { filter: blur(0); }
+      .about.is-visible .about-story { transition-delay: 300ms; }
+      .about.is-visible .about-profile { transition-delay: 300ms; }
+      .about.is-visible .about-achievements { opacity: 0; }
+      .about.is-visible.has-achievements .about-achievements { opacity: 1; }
+
+      .experience-gallery {
+        position: absolute;
+        z-index: 3;
+        inset: 75.5% 0 0;
+        padding: 3.3% 5.5% 0;
+        background: #0f0f11;
+        transform: translateY(-26px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 650ms ease, visibility 0s linear 650ms;
+      }
+
+      .about.has-achievements .experience-gallery {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+      }
+
+      .experience-track {
+        display: flex;
+        align-items: flex-start;
+        gap: 2.4%;
+        width: 100%;
+        height: 90%;
+      }
+
+      .experience-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        min-width: 0;
+        height: 100%;
+        padding: 0;
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        transition: flex-grow 700ms cubic-bezier(.2,.75,.2,1), opacity 500ms ease, box-shadow 500ms ease;
+        opacity: 0.48;
+      }
+
+      .experience-card img {
+        display: block;
+        width: 100%;
+        min-height: 0;
+        flex: 1 1 auto;
+        border-radius: 13px;
+        background: #202023;
+        object-fit: cover;
+        filter: blur(2px) brightness(.65);
+        transform: scale(1.02);
+        transition: filter 650ms ease, transform 800ms cubic-bezier(.2,.75,.2,1);
+      }
+
+      .experience-card.is-active {
+        flex-grow: 3.7;
+        opacity: 1;
+        box-shadow: none;
+      }
+
+      .experience-card.is-active img {
+        filter: blur(0) brightness(1);
+        transform: scale(1);
+        box-shadow: 0 0 32px rgba(255,255,255,.24);
+      }
+
+      .experience-card:nth-child(n + 4) img { object-position: center 82%; }
+
+      .experience-card:nth-child(n + 4).is-active { height: auto; }
+
+      .experience-card:nth-child(n + 4).is-active img {
+        flex: 0 0 320px;
+        height: 320px;
+        object-position: center 100%;
+      }
+
+      .experience-caption {
+        flex: 0 0 30px;
+        margin: 14px 0 0;
+        overflow: hidden;
+        color: rgba(255,255,255,.8);
+        font-size: 18px;
+        line-height: 30px;
+        text-align: left;
+        opacity: 0;
+        visibility: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        transition: opacity 250ms ease, visibility 0s linear 250ms;
+      }
+
+      .experience-card.is-active .experience-caption {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+      }
+
+      .projects-page {
+        position: relative;
+        width: min(100%, 1440px);
+        height: 900px;
+        min-height: 900px;
+        margin-inline: auto;
+        overflow: hidden;
+        background: #0f0f11;
+        isolation: isolate;
+      }
+
+      .ai-workflow-page {
+        position: relative;
+        width: min(100%, 1440px);
+        height: 1600px;
+        min-height: 1600px;
+        margin-inline: auto;
+        overflow: hidden;
+        background: #0f0f11;
+        isolation: isolate;
+      }
+
+      .ai-workflow-grid-field {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: .72;
+      }
+
+      .ai-workflow-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 138px 5.2% 70px;
+      }
+
+      .ai-workflow-title {
+        display: block;
+        width: 100%;
+        height: auto;
+        flex: none;
+        filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .42));
+      }
+
+      .ai-workflow-title-frame {
+        display: block;
+        width: min(465px, 100%);
+        flex: none;
+      }
+
+      .workflow-gallery {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 280px;
+        flex: none;
+        align-items: stretch;
+        gap: 14px;
+        margin-top: 48px;
+        overflow: hidden;
+        background: transparent;
+        isolation: isolate;
+      }
+
+      .workflow-gallery-item {
+        position: relative;
+        display: block;
+        height: 100%;
+        flex: 0 0 78px;
+        min-width: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 18px 46px rgba(0,0,0,.45);
+        color: white;
+        cursor: pointer;
+        isolation: isolate;
+        transition: flex-grow 650ms cubic-bezier(.2,.75,.2,1), border-color 350ms ease, box-shadow 350ms ease;
+      }
+
+      .workflow-gallery-item::after {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.74));
+        content: "";
+        opacity: .68;
+        transition: opacity 350ms ease;
+        pointer-events: none;
+      }
+
+      .workflow-gallery-media {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        overflow: hidden;
+        background: #fff;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        overscroll-behavior: contain;
+        touch-action: pan-x pan-y;
+      }
+
+      .workflow-gallery-media.can-scroll-x { overflow-x: auto; overflow-y: hidden; }
+      .workflow-gallery-media.can-scroll-y { overflow-x: hidden; overflow-y: auto; }
+      .workflow-gallery-item:not(.is-active) .workflow-gallery-media { overflow: hidden; }
+      .workflow-gallery-media::-webkit-scrollbar { width: 9px; height: 9px; }
+      .workflow-gallery-media::-webkit-scrollbar-track { background: transparent; }
+      .workflow-gallery-media::-webkit-scrollbar-thumb {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        background: transparent;
+        background-clip: padding-box;
+      }
+      .workflow-gallery-media.is-scrollbar-visible { scrollbar-color: rgba(42,47,54,.75) rgba(42,47,54,.14); }
+      .workflow-gallery-media.is-scrollbar-visible::-webkit-scrollbar-track { background: #fff; }
+      .workflow-gallery-media.is-scrollbar-visible::-webkit-scrollbar-thumb { background: rgba(42,47,54,.72); background-clip: padding-box; }
+
+      .workflow-gallery-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
+        transition: filter 450ms ease;
+        filter: grayscale(.62) brightness(.56) blur(2px);
+      }
+
+      .workflow-gallery-item[data-fixed-media="true"] .workflow-gallery-media {
+        overflow-anchor: none;
+      }
+
+      .workflow-gallery-item[data-fixed-media="true"] .workflow-gallery-media img {
+        object-position: left top;
+      }
+
+      .workflow-gallery-title {
+        position: absolute;
+        z-index: 2;
+        right: 22px;
+        bottom: 20px;
+        left: 22px;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.35;
+        text-align: left;
+        text-shadow: 0 2px 14px rgba(0,0,0,.8);
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity 300ms ease, transform 350ms ease, visibility 0s linear 300ms;
+      }
+
+      .workflow-gallery-item.is-active,
+      .workflow-gallery-item:hover,
+      .workflow-gallery-item:focus-visible {
+        z-index: 2;
+        flex-grow: 1;
+        border-color: rgba(255,255,255,.58);
+        box-shadow: 0 22px 58px rgba(0,0,0,.58), 0 0 26px rgba(255,255,255,.12);
+        outline: none;
+      }
+
+      .workflow-gallery-item.is-active img,
+      .workflow-gallery-item:hover img,
+      .workflow-gallery-item:focus-visible img { filter: none; object-fit: cover; }
+
+      .workflow-gallery-item.is-active::after,
+      .workflow-gallery-item:hover::after,
+      .workflow-gallery-item:focus-visible::after { opacity: .34; }
+
+      .workflow-gallery-item.is-active .workflow-gallery-title,
+      .workflow-gallery-item:hover .workflow-gallery-title,
+      .workflow-gallery-item:focus-visible .workflow-gallery-title {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition-delay: 0s;
+      }
+
+      .geo-logo-loop {
+        position: relative;
+        width: 100%;
+        height: 174px;
+        flex: none;
+        margin-top: 30px;
+        overflow: hidden;
+      }
+
+      .geo-logo-loop-track {
+        display: flex;
+        width: max-content;
+        height: 100%;
+        animation: geo-logo-scroll var(--geo-loop-duration, 40s) linear infinite;
+        will-change: transform;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+      }
+
+      .geo-logo-loop:hover .geo-logo-loop-track,
+      .geo-logo-loop:focus-within .geo-logo-loop-track { animation-play-state: paused; }
+
+      .geo-logo-list {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 0;
+        flex: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .geo-logo-item {
+        position: relative;
+        display: flex;
+        width: var(--geo-logo-item-width, 160px);
+        height: 160px;
+        flex: 0 0 var(--geo-logo-item-width, 160px);
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 8px;
+        opacity: .88;
+        transform: scale(1);
+        transform-origin: center 68px;
+        transition: opacity 260ms ease, transform 320ms cubic-bezier(.2,.75,.2,1);
+      }
+
+      .geo-logo-loop:hover .geo-logo-item,
+      .geo-logo-loop:focus-within .geo-logo-item { opacity: .28; transform: scale(.76); }
+
+      .geo-logo-loop .geo-logo-item:hover,
+      .geo-logo-loop .geo-logo-item:focus-visible {
+        z-index: 2;
+        opacity: 1;
+        transform: scale(1.24);
+        outline: none;
+      }
+
+      .geo-logo-item img {
+        display: block;
+        width: min(120px, calc(var(--geo-logo-item-width, 160px) * .76));
+        height: min(120px, calc(var(--geo-logo-item-width, 160px) * .76));
+        flex: none;
+        object-fit: contain;
+        filter: drop-shadow(0 5px 12px rgba(0,0,0,.28));
+        pointer-events: none;
+      }
+
+      .geo-logo-tooltip {
+        position: absolute;
+        z-index: 4;
+        display: block;
+        width: max-content;
+        max-width: calc(100% - 24px);
+        bottom: 2px;
+        left: 50%;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        white-space: nowrap;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0,0,0,.75);
+        opacity: 0;
+        transform: translate(-50%, 5px);
+        transition: opacity 220ms ease, transform 260ms ease;
+        pointer-events: none;
+      }
+
+      .geo-logo-tooltip.is-visible {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      .research-workflow-tag {
+        display: block;
+        width: min(310px, 70vw);
+        height: auto;
+        flex: none;
+        margin-top: 44px;
+        filter: drop-shadow(0 8px 14px rgba(0,0,0,.38));
+      }
+
+      .research-workflow-gallery {
+        height: 460px;
+        margin-top: 40px;
+      }
+
+      .research-workflow-gallery .workflow-gallery-item {
+        flex-basis: 11.2%;
+      }
+
+      .research-workflow-gallery video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #fff;
+        filter: grayscale(.62) brightness(.56) blur(2px);
+        transition: filter 450ms ease;
+      }
+
+      .research-workflow-gallery .workflow-gallery-item.is-active video,
+      .research-workflow-gallery .workflow-gallery-item:hover video,
+      .research-workflow-gallery .workflow-gallery-item:focus-visible video { filter: none; }
+
+      @keyframes geo-logo-scroll { to { transform: translateX(-50%); } }
+
+      .project-detail-drawer {
+        position: fixed;
+        z-index: 1000;
+        top: 100px;
+        right: 0;
+        bottom: auto;
+        left: 0;
+        height: calc(100vh - 100px);
+        height: calc(100dvh - 100px);
+        display: block;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .project-detail-backdrop {
+        position: absolute;
+        inset: 0;
+        background: transparent;
+        opacity: 1;
+      }
+
+      .project-detail-panel {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: 22px 22px 0 0;
+        background: #f8f9fc;
+        box-shadow: 0 -20px 70px rgba(0, 0, 0, .28);
+        transform: translate3d(0, 100%, 0);
+        will-change: transform;
+        transition: transform 420ms cubic-bezier(.22, .68, 0, 1);
+      }
+
+      .project-detail-drawer.is-open {
+        pointer-events: auto;
+      }
+
+      .project-detail-drawer.is-closing { pointer-events: auto; }
+      .project-detail-drawer.is-open .project-detail-panel {
+        transform: translate3d(0, 0, 0);
+      }
+
+      .project-detail-toolbar {
+        position: absolute;
+        z-index: 1;
+        top: 18px;
+        right: max(24px, calc((100vw - 1392px) / 2));
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        pointer-events: none;
+      }
+
+      .project-detail-close {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid rgba(25, 25, 25, .13);
+        border-radius: 50%;
+        background: rgba(255,255,255,.92);
+        color: #191919;
+        font: 28px/1 sans-serif;
+        cursor: pointer;
+        pointer-events: auto;
+        box-shadow: 0 4px 16px rgba(0,0,0,.12);
+      }
+
+      .project-detail-sidebar {
+        position: absolute;
+        z-index: 2;
+        top: 78px;
+        right: max(24px, calc((100vw - 1392px) / 2));
+        width: 42px;
+        max-height: calc(100% - 96px);
+        color: #28282b;
+        pointer-events: auto;
+      }
+
+      .project-detail-sidebar-list {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        max-height: inherit;
+        margin: 0;
+        padding: 8px 0;
+        overflow: visible;
+        list-style: none;
+      }
+
+      .project-detail-sidebar-item { position: relative; height: 13px; }
+
+      .project-detail-sidebar-button {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        display: flex;
+        width: max-content;
+        min-height: 13px;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+        transform: translateY(-50%);
+        border: 0;
+        background: transparent;
+        color: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .project-detail-sidebar-marker {
+        display: block;
+        width: calc(34px + var(--effect, 0) * 22px);
+        height: 2px;
+        flex: 0 0 auto;
+        transform: translateX(calc(var(--effect, 0) * -10px)) scaleY(calc(1 + var(--effect, 0) * 1.5));
+        transform-origin: right center;
+        background: rgba(48, 48, 52, calc(.36 + var(--effect, 0) * .48));
+        transition: width 80ms linear, height 80ms linear, background-color 80ms linear;
+      }
+
+      .project-detail-sidebar-bubble {
+        position: absolute;
+        top: 0;
+        right: 38px;
+        left: auto;
+        display: block;
+        width: max-content;
+        max-width: min(500px, calc(100vw - 110px));
+        overflow: visible;
+        padding: 7px 12px;
+        border: 1px solid rgba(255, 255, 255, .58);
+        border-radius: 7px;
+        background: rgba(255, 255, 255, .68);
+        -webkit-backdrop-filter: blur(12px) saturate(1.15);
+        backdrop-filter: blur(12px) saturate(1.15);
+        box-shadow: 0 5px 18px rgba(20, 20, 25, .14);
+        color: #252529;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        opacity: 0;
+        transform: translate(-5px, -50%);
+        transition: opacity 110ms ease, transform 140ms ease;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+
+      .project-detail-sidebar-bubble::before {
+        position: absolute;
+        top: 50%;
+        right: -6px;
+        width: 10px;
+        height: 10px;
+        border-right: 1px solid rgba(255, 255, 255, .58);
+        border-bottom: 1px solid rgba(255, 255, 255, .58);
+        border-radius: 0 0 2px 0;
+        background: rgba(255, 255, 255, .76);
+        transform: translateY(-50%) rotate(-45deg);
+        content: "";
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+
+      .project-detail-sidebar-bubble.is-visible {
+        opacity: 1;
+        transform: translate(0, -50%);
+      }
+
+      @media (max-width: 760px) {
+        .project-detail-sidebar {
+          top: 58px;
+          right: 14px;
+          width: 30px;
+          max-height: calc(100% - 76px);
+        }
+        .project-detail-sidebar-list { gap: 6px; }
+        .project-detail-sidebar-marker { width: calc(22px + var(--effect, 0) * 14px); }
+        .project-detail-sidebar-bubble {
+          right: 18px;
+          left: auto;
+          max-width: calc(100vw - 74px);
+          padding: 6px 9px;
+          font-size: 12px;
+          line-height: 18px;
+        }
+      }
+
+      .project-detail-scroll {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        overscroll-behavior: contain;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .project-detail-image {
+        display: block;
+        width: min(100%, 1440px);
+        height: auto;
+        min-height: 100%;
+        margin: 0 auto;
+        object-fit: contain;
+        object-position: top center;
+      }
+
+      @media (max-width: 760px) {
+        .project-detail-drawer {
+          top: 58px;
+          height: calc(100vh - 58px);
+          height: calc(100dvh - 58px);
+        }
+        .project-detail-panel { border-radius: 14px 14px 0 0; }
+        .project-detail-toolbar { top: 10px; right: 14px; }
+        .project-detail-close { width: 36px; height: 36px; font-size: 25px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .project-detail-panel { transition-duration: 0ms; }
+      }
+
+      .projects-grid-field {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: .72;
+      }
+
+      .projects-copy {
+        position: absolute;
+        z-index: 2;
+        top: 15%;
+        left: 6.9%;
+        right: 6.9%;
+      }
+
+      .project-decoration {
+        position: absolute;
+        z-index: 1;
+        top: 13%;
+        right: 4%;
+        display: block;
+        width: min(29%, 380px);
+        max-height: 380px;
+        object-fit: contain;
+        object-position: right top;
+        pointer-events: none;
+        filter: drop-shadow(0 18px 34px rgba(0,0,0,.28));
+      }
+
+      .project-decoration.is-compact { width: min(23.2%, 304px); }
+
+      .project-labels {
+        display: flex;
+        min-height: 52px;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .project-kind {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        padding: 0 28px;
+        border-radius: 28px;
+        background: #064bff;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .45);
+      }
+
+      .project-kind-image {
+        display: block;
+        width: auto;
+        height: 48px;
+        flex: 0 0 auto;
+        filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .42));
+      }
+
+      .project-title-label {
+        display: block;
+        width: auto;
+        max-width: min(58vw, 520px);
+        height: 52px;
+        flex: 0 1 auto;
+        object-fit: contain;
+        object-position: left center;
+        filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .42));
+      }
+
+      .project-title-frame {
+        position: relative;
+        display: inline-flex;
+        flex: 0 1 auto;
+        width: fit-content;
+        max-width: min(58vw, 520px);
+        height: 52px;
+        isolation: isolate;
+      }
+
+      .project-title-frame .project-title-label {
+        max-width: 100%;
+        height: 100%;
+      }
+
+      .project-title-shine {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .project-title-text {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        padding: 0 26px;
+        border: 1px solid rgba(255,255,255,.36);
+        border-radius: 28px;
+        background: linear-gradient(110deg, #293244, #29292b 45%);
+        color: #fff;
+        font-size: 23px;
+        font-weight: 700;
+        text-shadow: 0 3px 3px rgba(0,0,0,.45);
+        white-space: nowrap;
+      }
+
+      .project-description {
+        max-width: min(960px, 72%);
+        min-height: 90px;
+        margin: 58px 0 0 48px;
+        color: rgba(255,255,255,.8);
+        font-family: "PingFang SC", "苹方", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.9;
+        text-wrap: pretty;
+      }
+
+      .project-description strong { color: #fff; font-weight: 600; }
+
+      .project-accordion {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        transform: translateY(80px);
+      }
+
+      .project-card {
+        position: absolute;
+        left: calc(50% + var(--offset, 0px));
+        bottom: calc(13% + clamp(58.6px, calc(218.35px - 11.09vw), 11.695vw));
+        display: block;
+        width: min(13vw, 190px);
+        aspect-ratio: 0.586;
+        padding: 0;
+        overflow: visible;
+        border: 0;
+        border-radius: 14px;
+        background: #eceff3;
+        box-shadow: 0 24px 54px rgba(0,0,0,.62), 0 4px 12px rgba(0,0,0,.48);
+        cursor: pointer;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(var(--arc-drop, 0px)) rotate(calc(var(--tilt, 0deg) * -1));
+        transform-origin: 50% 80%;
+        transition: width 650ms cubic-bezier(.2,.75,.2,1), aspect-ratio 650ms ease, bottom 650ms cubic-bezier(.2,.75,.2,1),
+          transform 650ms cubic-bezier(.2,.75,.2,1), border-radius 650ms cubic-bezier(.2,.75,.2,1),
+          box-shadow 450ms ease, filter 450ms ease;
+        filter: brightness(.72) saturate(.86);
+      }
+
+      .project-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+
+      .project-card.is-active {
+        z-index: 50 !important;
+        bottom: 13%;
+        width: min(310.5px, 32.4vw);
+        aspect-ratio: 0.711;
+        border-radius: 20px;
+        box-shadow: 0 30px 72px rgba(0,0,0,.78), 0 0 42px rgba(255,255,255,.13);
+        filter: brightness(1) saturate(1);
+        transform: translateX(-50%) translateY(var(--arc-drop, 0px)) rotate(calc(var(--tilt, 0deg) * -1));
+      }
+
+      .projects-page.is-dealing .project-card {
+        animation: project-card-deal 900ms cubic-bezier(.2,.75,.25,1) both;
+        animation-delay: calc(var(--deal-index, 0) * 65ms);
+      }
+
+      @keyframes project-card-deal {
+        from {
+          transform: translateX(calc(-50% - var(--offset, 0px))) translateY(var(--arc-drop, 0px)) rotate(0deg) scale(.72);
+        }
+        to {
+          transform: translateX(-50%) translateY(var(--arc-drop, 0px)) rotate(calc(var(--tilt, 0deg) * -1)) scale(1);
+        }
+      }
+
+      .project-card:hover,
+      .project-card:focus-visible { outline: none; }
+
+      .projects-page::after {
+        position: absolute;
+        z-index: 0;
+        inset: 35% 0 0;
+        content: "";
+        pointer-events: none;
+        background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,.075), transparent 57%);
+      }
+
+      @media (max-width: 760px) {
+        .projects-page { height: 900px; min-height: 900px; }
+        .ai-workflow-page { height: 1500px; min-height: 1500px; }
+        .ai-workflow-content { padding: 92px 4% 38px; }
+        .ai-workflow-title-frame { width: min(465px, 100%); }
+        .workflow-gallery { height: 230px; margin-top: 36px; gap: 8px; }
+        .workflow-gallery-item { border-radius: 8px; }
+        .workflow-gallery-item:not(.is-active) { flex-basis: 40px; }
+        .workflow-gallery-title { right: 14px; bottom: 14px; left: 14px; font-size: 16px; }
+        .geo-logo-loop { height: 132px; margin-top: 22px; }
+        .geo-logo-item { height: 114px; transform-origin: center 44px; }
+        .geo-logo-item img { width: min(78px, calc(var(--geo-logo-item-width, 100px) * .76)); height: min(78px, calc(var(--geo-logo-item-width, 100px) * .76)); }
+        .geo-logo-tooltip { font-size: 12px; }
+        .research-workflow-tag { width: min(270px, 78vw); margin-top: 38px; }
+        .research-workflow-gallery { height: 320px; margin-top: 28px; gap: 8px; }
+        .research-workflow-gallery .workflow-gallery-item { flex-basis: 10.5%; border-radius: 8px; }
+        .research-workflow-gallery .workflow-gallery-title { right: 14px; bottom: 14px; left: 14px; font-size: 16px; }
+        .projects-copy { top: 14%; left: 5%; right: 5%; }
+        .project-decoration { top: 20%; right: 2%; width: 34%; max-height: 260px; }
+        .project-decoration.is-compact { width: 27.2%; }
+        .project-labels { gap: 8px; min-height: 40px; }
+        .project-kind, .project-title-text { min-height: 36px; padding-inline: 14px; font-size: 15px; }
+        .project-title-frame { height: 39px; max-width: 60vw; }
+        .project-title-label { height: 39px; max-width: 60vw; }
+        .project-description { max-width: 100%; min-height: 88px; margin: 28px 0 0 8px; line-height: 1.65; }
+        .project-card { width: 17vw; bottom: calc(15% + 7.27vw); border-radius: 8px; }
+        .project-card.is-active { width: 30.96vw; bottom: 15%; border-radius: 12px; }
+      }
+
+      @media (max-width: 760px) {
+        .experience-gallery { inset: 75.5% 0 0; padding: 4.6% 4% 0; }
+        .experience-track { gap: 1.8%; height: 82%; }
+        .experience-card img { border-radius: 8px; }
+        .experience-card.is-active { flex-grow: 3.2; }
+        .experience-card:nth-child(n + 4).is-active img { flex-basis: 240px; height: 240px; }
+        .experience-caption { flex-basis: 20px; margin-top: 8px; font-size: 13px; line-height: 20px; }
+      }
+
+      .cover {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
+      .nav-backdrop {
+        position: fixed;
+        z-index: 1001;
+        inset: 0 0 auto;
+        height: 72px;
+        background: rgba(15, 15, 17, 0.32);
+        filter: blur(12px);
+        -webkit-backdrop-filter: blur(14.5px);
+        backdrop-filter: blur(14.5px);
+        pointer-events: none;
+      }
+
+      .site-nav {
+        position: fixed;
+        z-index: 1002;
+        top: -20px;
+        left: max(0px, calc((100vw - 1440px) / 2));
+        width: min(100%, 1440px);
+        height: 112px;
+        color: #fff;
+        pointer-events: none;
+      }
+
+      .brand {
+        display: inline-flex;
+        position: absolute;
+        z-index: 20;
+        top: 47px;
+        left: 5.625%;
+        width: 230px;
+        height: 34px;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 24px;
+        font-family: "FZ Yuejin Portfolio", sans-serif;
+        font-weight: 400;
+        line-height: 1;
+        text-decoration: none;
+        white-space: nowrap;
+        pointer-events: auto;
+      }
+      .brand > span:last-child {
+        display: inline-block;
+        transform-origin: left center;
+        transition: transform 260ms cubic-bezier(.2,.75,.25,1), text-shadow 260ms ease;
+      }
+      .brand.is-playing > span:last-child {
+        transform: scale(1.08);
+        text-shadow: 0 0 6px rgba(255,255,255,.9), 0 0 16px rgba(255,255,255,.58);
+      }
+
+      .brand-mark {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 30px;
+        flex: 0 0 46px;
+      }
+      .brand-mark svg { display: block; width: 46px; height: 30px; overflow: visible; }
+      .brand-mark .logo-plus {
+        transform-box: view-box;
+        transform-origin: 8.6px 4.6px;
+      }
+      .brand-mark.is-playing .logo-eye-left { animation: logo-look-left 5s ease-in-out infinite; }
+      .brand-mark.is-playing .logo-eye-right { animation: logo-look-right 5s ease-in-out infinite; }
+      .brand-mark.is-playing .logo-plus { animation: logo-plus 5s ease-in-out infinite; }
+      @keyframes logo-look-left {
+        0%, 10%, 100% { transform: translateX(0); }
+        16%, 36% { transform: translateX(12px); }
+        44%, 70% { transform: translateX(-5px); }
+        78% { transform: translateX(0); }
+      }
+      @keyframes logo-look-right {
+        0%, 10%, 100% { transform: translateX(0); }
+        16%, 36% { transform: translateX(4px); }
+        44%, 70% { transform: translateX(-13px); }
+        78% { transform: translateX(0); }
+      }
+      @keyframes logo-plus {
+        0%, 12%, 100% { transform: rotate(0); }
+        32%, 42% { transform: rotate(90deg); }
+        68%, 78% { transform: rotate(-90deg); }
+      }
+
+      .site-nav ul {
+        position: absolute;
+        top: 44px;
+        left: 29%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 60px;
+        width: auto;
+        height: 42px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .site-nav li { position: static; top: 0; }
+      .site-nav li { z-index: 23; pointer-events: auto; }
+
+      .site-nav a:not(.brand) {
+        display: inline-block;
+        padding: 0;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 32px;
+        text-decoration: none;
+        white-space: nowrap;
+        transform-origin: center;
+        transition: color 180ms ease, text-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .site-nav a:not(.brand):hover,
+      .site-nav a:not(.brand):focus-visible {
+        color: #fff;
+        text-shadow: 0 9px 38px rgba(255, 255, 255, 0.7);
+        transform: scale(1.28);
+        outline: none;
+      }
+
+      .site-nav a.is-active { color: #fff; }
+
+      @media (max-width: 1000px) and (min-width: 761px) {
+        .brand { top: 30px; left: 5%; width: 190px; font-size: 20px; }
+        .brand-mark, .brand-mark svg { width: 40px; height: 26px; }
+        .brand-mark { flex-basis: 40px; }
+        .site-nav ul { top: 30px; left: 32%; width: auto; gap: 60px; }
+        .site-nav a:not(.brand) { font-size: 20px; line-height: 28px; }
+      }
+
+
+      .cover-background {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .cover-background.is-ready { opacity: 1; }
+
+      .cover.is-ready { opacity: 0; }
+
+      .lens, .character-motion {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .lens {
+        z-index: 31;
+        opacity: 0;
+        transition: opacity 180ms ease-out;
+      }
+
+      .lens.is-visible { opacity: 1; }
+
+      .character-motion { z-index: 33; opacity: 0; }
+      .character-motion.is-ready { opacity: 1; }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @media (max-width: 760px) {
+        .site-nav { left: 0; width: 100%; height: 58px; padding-inline: 20px; background: transparent; }
+        .brand { top: 14px; left: 20px; width: auto; height: 30px; font-size: 18px; }
+        .brand-mark { transform: scale(0.8); transform-origin: left center; margin-right: -6px; }
+        .site-nav ul { position: static; display: flex; align-items: center; justify-content: flex-end; width: auto; height: 58px; gap: 16px; margin: 0 0 0 auto; }
+        .site-nav li { position: static; }
+        .site-nav a:not(.brand) { font-size: 14px; line-height: 20px; padding: 5px 0; }
+        .site-nav a:not(.brand):hover,
+        .site-nav a:not(.brand):focus-visible { transform: scale(1.12); }
+      }
+
+      @media (max-width: 520px) {
+        .site-nav { padding-inline: 14px; }
+        .brand { left: 14px; width: 116px; gap: 4px; font-size: 13px; }
+        .brand-mark, .brand-mark svg { width: 32px; height: 22px; }
+        .brand-mark { flex-basis: 32px; }
+        .site-nav ul { min-width: 0; gap: 4px; margin-left: 120px; }
+        .site-nav a:not(.brand) { font-size: 9px; line-height: 16px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .about-layer,
+        .about-layer img,
+        .about-intro.is-active .intro-char,
+        .about-intro.is-active .about-intro-tag-frame,
+        .project-card { transition-duration: 0ms; transition-delay: 0ms !important; filter: none; }
+        .workflow-gallery-item { transition-duration: 0ms; }
+        .geo-logo-loop-track { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-backdrop" aria-hidden="true"></div>
+    <nav class="site-nav" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Portfolio home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 46 30" xmlns="http://www.w3.org/2000/svg"><path class="logo-plus" d="M10.007 3.157h3.22v2.839h-3.22v3.285H7.167V5.996H4.011V3.157h3.156V0h2.84v3.157Z" fill="#fff"/><path d="M25.873 2.416C36.989 2.416 46 11.427 46 22.543H5.746C5.746 11.427 14.757 2.416 25.873 2.416Z" fill="#fff"/><path d="M44.566 10.219c-2.198 2.654-6.131 3.024-8.785.826-2.654-2.197-3.024-6.131-.827-8.785 2.198-2.654 6.132-3.024 8.786-.826 2.654 2.198 3.024 6.131.826 8.785Z" fill="#fff"/><g fill="#000"><ellipse class="logo-eye-left" cx="17.775" cy="21.15" rx="2.586" ry="8.671"/><ellipse class="logo-eye-right" cx="33.971" cy="21.15" rx="2.586" ry="8.671"/></g></svg></span>
+          <span>PORTFOLIO</span>
+        </a>
+        <ul>
+          <li><a href="#about">About me</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#ai-workflow">AI workflow</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="home">
+      <h1 class="sr-only">王子轩 2026 设计作品集</h1>
+      <img
+        class="cover"
+        src="assets/portfolio-cover.png"
+        width="2880"
+        height="1620"
+        alt="王子轩 2026 UX/UI/AI 设计作品集封面"
+        fetchpriority="high"
+      />
+      <canvas class="cover-background" aria-hidden="true"></canvas>
+      <canvas class="lens" aria-hidden="true"></canvas>
+      <canvas class="character-motion" aria-hidden="true"></canvas>
+    </main>
+    <section class="about" id="about" aria-label="个人介绍">
+      <div class="about-layer about-title" aria-hidden="true"><img src="assets/about-page.png" alt="" /></div>
+      <div class="about-layer about-story" aria-hidden="true"><img src="assets/about-page.png" alt="" /></div>
+      <div class="about-layer about-profile" aria-hidden="true"><img src="assets/about-page.png" alt="" /></div>
+      <div class="about-layer about-achievements" aria-hidden="true"><img src="assets/about-page.png" alt="" /></div>
+      <canvas class="about-dot-field" aria-hidden="true"></canvas>
+      <div class="about-intro" aria-label="汪子璇，职业与学业标签">
+        <h1 class="about-intro-name" aria-label="汪子璇"><span class="intro-char">汪</span><span class="intro-char">子</span><span class="intro-char">璇</span></h1>
+        <div class="about-intro-tags" aria-hidden="true">
+          <span class="about-intro-tag-frame"><img src="assets/about-intro/education-tag.png" alt="" /><canvas class="about-intro-tag-shine" aria-hidden="true"></canvas></span>
+          <span class="about-intro-tag-frame"><img src="assets/about-intro/alibaba-tag.png" alt="" /><canvas class="about-intro-tag-shine" aria-hidden="true"></canvas></span>
+          <span class="about-intro-tag-frame"><img src="assets/about-intro/ctrip-tag.png" alt="" /><canvas class="about-intro-tag-shine" aria-hidden="true"></canvas></span>
+        </div>
+      </div>
+      <div class="experience-gallery" aria-label="过往经历照片">
+        <div class="experience-track">
+          <button class="experience-card is-active" type="button" aria-label="展开：猫超 OKR 优胜奖项目合影" aria-pressed="true"><img src="assets/experience/1.jpg" alt="猫超团队合影" /><span class="experience-caption" aria-live="polite">猫超 OKR 优胜奖项目合影</span></button>
+          <button class="experience-card" type="button" aria-label="展开：携程 AI 设计峰会演讲" aria-pressed="false"><img src="assets/experience/2.jpg" alt="携程 AI 设计峰会演讲" /><span class="experience-caption" aria-live="polite">携程 AI 设计峰会演讲</span></button>
+          <button class="experience-card" type="button" aria-label="展开：携程设计峰会分享" aria-pressed="false"><img src="assets/experience/3.jpg" alt="携程设计峰会分享" /><span class="experience-caption" aria-live="polite">携程设计峰会分享</span></button>
+          <button class="experience-card" type="button" aria-label="展开：最具影响力讲师" aria-pressed="false"><img src="assets/experience/4.jpg" alt="最具影响力讲师奖杯" /><span class="experience-caption" aria-live="polite">最具影响力讲师</span></button>
+          <button class="experience-card" type="button" aria-label="展开：2025 优秀讲师" aria-pressed="false"><img src="assets/experience/5.jpg" alt="2025 优秀讲师奖牌" /><span class="experience-caption" aria-live="polite">2025 优秀讲师</span></button>
+        </div>
+      </div>
+      <div class="about-top-mask" aria-hidden="true"></div>
+      <p class="sr-only">汪子璇的个人介绍与工作成就。曾任职携程旅游和阿里巴巴天猫超市供应链，获得猫超 OKR 优胜奖、产研提效奖和携程 AI 设计峰会最佳讲师。下方展示猫超团队合影、携程 AI 设计峰会演讲及讲师奖项照片。</p>
+    </section>
+    <section class="projects-page" id="projects" aria-label="项目介绍">
+      <canvas class="projects-grid-field" aria-hidden="true"></canvas>
+      <img class="project-decoration" alt="" aria-hidden="true" />
+      <div class="projects-copy" aria-live="polite">
+        <div class="project-labels">
+          <img class="project-kind-image" src="assets/project-details/labels/Ai导购搜索标签.png" alt="AI Agent" />
+          <span class="project-title-frame">
+            <img class="project-title-label" src="assets/project-details/titles/Ai导购搜索项目名称.png" alt="旅游门店导购 AI 搜索推荐" />
+            <canvas class="project-title-shine" aria-hidden="true"></canvas>
+          </span>
+        </div>
+        <p class="project-description">将Ai解析推荐能力引入至首页搜索中，模仿学习&amp;提效导购销售转化能力，并将Agent对话咨询+讲解工具能力接入至旅游商详讲解中，<strong>实践检测智能推品采纳率已达成70%目标</strong></p>
+      </div>
+      <div class="project-accordion" aria-label="项目卡片">
+        <button class="project-card" type="button" data-title="商家工具台重构" data-kind-image="assets/project-details/labels/商家工具台标签.png" data-title-image="assets/project-details/titles/商家工具台重构名称.png" data-decoration="assets/project-details/decorations/商家工作台.png" data-description="针对猫超新老商家经营后台工具分散、菜单冗余，新商动销慢留存率低等问题，通过新老商家分层，搭建商家版‘千人千面’新老商家经营工作台和学习中心，新商动销时长提效80%，缩减至18天，新商留存率提升至92%。" data-emphasis="新商动销时长提效80%，缩减至18天，新商留存率提升至92%" data-small="assets/projects/商家工作台_缩小版.png" data-expanded="assets/projects/商家工作台 展开版.png" aria-label="展开项目：商家工具台重构"><img src="assets/projects/商家工作台_缩小版.png" alt="商家工具台重构项目界面" /></button>
+        <button class="project-card" type="button" data-title="成长体系" data-kind-image="assets/project-details/labels/成长体系标签.png" data-title-image="assets/project-details/titles/成长体系名称.png" data-decoration="assets/project-details/decorations/成长体系.png" data-description="通过VOB发现目前全国5000+门店当中，千万销量钻石门店占比不足2%，通过搭建门店成长体系建立各导购之间水位认知与权益吸引，并搭配可视化数据监测，上线6个月指引金牌门店同比去年新增377家，渗透率达到60%。" data-emphasis="上线6个月指引金牌门店同比去年新增377家，渗透率达到60%" data-small="assets/projects/成长体系 缩小版.png" data-expanded="assets/projects/成长体系展开版.png" aria-label="展开项目：成长体系"><img src="assets/projects/成长体系 缩小版.png" alt="成长体系项目界面" /></button>
+        <button class="project-card" type="button" data-title="B端组件体系" data-kind-image="assets/project-details/labels/B端组件体系标签.png" data-title-image="assets/project-details/titles/B端组件体系名称.png" data-decoration="assets/project-details/decorations/B端数据组件化.png" data-description="将B端数据可视化组件运用在SDUI生成规范中，并自研B端系统封装Skill安装包和数据图可视化面板组件，支持通过Cursor、Claude等IDE平台VibeCoding通过自然语言生成系统页面，实践检测前端代码采纳率达到60-85%。" data-emphasis="实践检测前端代码采纳率达到60-85%" data-small="assets/projects/B端数据组件 缩小版.png" data-expanded="assets/projects/B端数据组件展开版.png" aria-label="展开项目：B端组件体系"><img src="assets/projects/B端数据组件 缩小版.png" alt="B端组件体系项目界面" /></button>
+        <button class="project-card is-active" type="button" data-title="旅游门店导购AI搜索推荐" data-kind-image="assets/project-details/labels/Ai导购搜索标签.png" data-title-image="assets/project-details/titles/Ai导购搜索项目名称.png" data-decoration="assets/project-details/decorations/旅游门店搜索.png" data-description="将Ai解析推荐能力引入至首页搜索中，模仿学习&提效导购销售转化能力，并将Agent对话咨询+讲解工具能力接入至旅游商详讲解中，实践检测智能推品采纳率已达成70%目标" data-emphasis="实践检测智能推品采纳率已达成70%目标" data-small="assets/projects/旅游门店缩小版.png" data-expanded="assets/projects/旅游门店展开版.png" aria-label="展开项目：旅游门店导购AI搜索推荐" aria-pressed="true"><img src="assets/projects/旅游门店展开版.png" alt="旅游门店导购AI搜索推荐项目界面" /></button>
+        <button class="project-card" type="button" data-title="海外Trip项目" data-kind-image="assets/project-details/labels/海外Trip标签.png" data-title-image="assets/project-details/titles/海外Trip项目名称.png" data-decoration="assets/project-details/decorations/Trip出海.png" data-description="通过竞品调研分析优化Trip APP上线的Package Tour频道业务，并通过真实用户可用性测试分析海外用户认知习惯、操作方式进行预订链路改版，实践检验海外用户对新版方案满意度提升21%。" data-emphasis="实践检验海外用户对新版方案满意度提升21%" data-small="assets/projects/海外预订缩小版.png" data-expanded="assets/projects/海外预订展开版.png" aria-label="展开项目：海外Trip项目"><img src="assets/projects/海外预订缩小版.png" alt="海外Trip项目界面" /></button>
+        <button class="project-card" type="button" data-title="钉钉小程序" data-kind-image="assets/project-details/labels/钉钉小程序标签.png" data-title-image="assets/project-details/titles/钉钉小程序名称.png" data-decoration="assets/project-details/decorations/钉钉小程序.png" data-description="重构升级19年旧版同城零售小程序，实现猫超商家后台多端联动，侧重搭建移动端经营数据模块与订单待办提醒，服务灵活化办公场景，上线覆盖92%供应商，并成为‘猫超商家大会’宣传利益点。" data-emphasis="上线覆盖92%供应商，并成为‘猫超商家大会’宣传利益点" data-small="assets/projects/小程序缩小版.png" data-expanded="assets/projects/小程序展开版.png" aria-label="展开项目：钉钉小程序"><img src="assets/projects/小程序缩小版.png" alt="钉钉小程序项目界面" /></button>
+        <button class="project-card" type="button" data-title="猫超入驻" data-kind-image="assets/project-details/labels/猫超入驻标签.png" data-title-image="assets/project-details/titles/猫超入驻名称.png" data-decoration="assets/project-details/decorations/猫超入驻.png" data-description="针对猫超自营商家入驻高耗时、多次驳回率高达30%以上问题，观察分析审核规则与证件之间关联关系，引入AI预审和自主匹配填充能力，淘系商家入驻提效82%，一次性通过率提升至50%。" data-emphasis="淘系商家入驻提效82%，一次性通过率提升至50%" data-small="assets/projects/新商入驻 缩小版.png" data-expanded="assets/projects/新商入驻 展开版.png" aria-label="展开项目：猫超入驻"><img src="assets/projects/新商入驻 缩小版.png" alt="猫超入驻项目界面" /></button>
+      </div>
+      <h2 class="sr-only">项目介绍</h2>
+    </section>
+    <section class="ai-workflow-page" id="ai-workflow" aria-label="AI 自动工具流">
+      <canvas class="ai-workflow-grid-field" aria-hidden="true"></canvas>
+      <div class="ai-workflow-content">
+        <div class="ai-workflow-title-frame">
+          <img class="ai-workflow-title" src="assets/ai-workflow/dify-title.png" alt="Dify AI 工作流自动生成 ICON+运营海报" />
+        </div>
+        <div class="workflow-gallery" role="region" aria-label="AI 工具流展示">
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" aria-label="ICON生成工具流">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/icon-workflow.png" alt="ICON生成工具流完整流程图" /></span>
+            <span class="workflow-gallery-title">ICON生成工具流</span>
+          </button>
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" data-fixed-media="true" aria-label="3D图标展示示意">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/3d-icon-example.png" alt="3D图标展示示意" /></span>
+            <span class="workflow-gallery-title">3D图标展示示意</span>
+          </button>
+          <button class="workflow-gallery-item is-active" type="button" aria-pressed="true" aria-label="海报生成工具流">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/poster-workflow.png" alt="海报生成工具流完整流程图" /></span>
+            <span class="workflow-gallery-title">海报生成工具流</span>
+          </button>
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" aria-label="运营海报示意">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/marketing-poster-example.png" alt="运营海报示意" /></span>
+            <span class="workflow-gallery-title">运营海报示意</span>
+          </button>
+        </div>
+        <div class="geo-logo-loop" aria-label="地理图标循环展示">
+          <div class="geo-logo-loop-track"></div>
+          <span class="geo-logo-tooltip" aria-hidden="true"></span>
+        </div>
+        <img class="research-workflow-tag" src="assets/ai-workflow/user-research/dify-user-research-tag.png" alt="Dify 用户调研策略分析" />
+        <div class="workflow-gallery research-workflow-gallery" role="region" aria-label="Dify 用户研究策略分析工作流">
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" aria-label="旅游门店 VOB 分析工作流">
+            <span class="workflow-gallery-media"><video src="assets/ai-workflow/user-research/旅游门店VOB分析工作流.mp4" poster="assets/ai-workflow/user-research/旅游门店VOB分析工作流封面.png" muted loop playsinline preload="metadata" aria-label="旅游门店 VOB 分析工作流演示视频"></video></span>
+            <span class="workflow-gallery-title">旅游门店 VOB 分析工作流</span>
+          </button>
+          <button class="workflow-gallery-item is-active" type="button" aria-pressed="true" aria-label="用户调研分析">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/user-research/用户调研分析.png" alt="用户调研分析流程图" /></span>
+            <span class="workflow-gallery-title">用户调研分析</span>
+          </button>
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" aria-label="设计方案可用性评估工作流">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/user-research/设计方案可用性评估工作流.png" alt="设计方案可用性评估工作流" /></span>
+            <span class="workflow-gallery-title">设计方案可用性评估工作流</span>
+          </button>
+          <button class="workflow-gallery-item" type="button" aria-pressed="false" aria-label="评估对话过程">
+            <span class="workflow-gallery-media"><img src="assets/ai-workflow/user-research/评估对话过程.png" alt="评估对话过程界面" /></span>
+            <span class="workflow-gallery-title">评估对话过程</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <div class="project-detail-drawer" aria-hidden="true">
+      <div class="project-detail-backdrop" data-close-project-detail></div>
+      <section class="project-detail-panel" role="dialog" aria-modal="true" aria-label="项目详情">
+        <div class="project-detail-toolbar">
+          <button class="project-detail-close" type="button" aria-label="关闭项目详情" data-close-project-detail>×</button>
+        </div>
+        <nav class="project-detail-sidebar" aria-label="项目详情章节">
+          <ul class="project-detail-sidebar-list"></ul>
+          <span class="project-detail-sidebar-bubble" role="status" aria-live="polite"></span>
+        </nav>
+        <div class="project-detail-scroll" tabindex="0" aria-label="项目详情内容">
+          <img class="project-detail-image" alt="" />
+        </div>
+      </section>
+    </div>
+    <script>
+      (() => {
+        const aboutSection = document.querySelector('.about');
+        const aboutLink = document.querySelector('.site-nav a[href="#about"]');
+        const projectsSection = document.querySelector('.projects-page');
+        const projectDetailDrawer = document.querySelector('.project-detail-drawer');
+        const projectDetailImage = document.querySelector('.project-detail-image');
+        const projectDetailScroll = document.querySelector('.project-detail-scroll');
+        const projectSidebar = document.querySelector('.project-detail-sidebar');
+        const projectSidebarList = document.querySelector('.project-detail-sidebar-list');
+        const projectSidebarBubble = document.querySelector('.project-detail-sidebar-bubble');
+        const projectsGridCanvas = [...document.querySelectorAll('.projects-grid-field, .ai-workflow-grid-field')];
+        const aiWorkflowSection = document.querySelector('.ai-workflow-page');
+        const gridSections = [projectsSection, aiWorkflowSection];
+        const aiWorkflowLink = document.querySelector('.site-nav a[href="#ai-workflow"]');
+        const workflowGallery = document.querySelector('.workflow-gallery:not(.research-workflow-gallery)');
+        const workflowGalleryItems = [...workflowGallery.querySelectorAll('.workflow-gallery-item')];
+        const projectsGridContexts = projectsGridCanvas.map(canvas => canvas.getContext('2d', { alpha: true }));
+        const projectsGrid = {
+          width: 1, height: 1, ratio: 1, offsetX: 0, offsetY: 0, time: 0, last: 0,
+          startedAt: 0, started: false, visible: false, visibleSections: new Set(), frame: 0, pointer: null,
+          spot: { x: 0, y: 0, vx: 0, vy: 0, power: 0 }, lit: new Map(), cascades: []
+        };
+        const projectsLink = document.querySelector('.site-nav a[href="#projects"]');
+        const dotCanvas = document.querySelector('.about-dot-field');
+        const dotContext = dotCanvas.getContext('2d', { alpha: true });
+        const referenceImage = document.querySelector('.about-title img');
+        const intro = document.querySelector('.about-intro');
+        const introChars = [...intro.querySelectorAll('.intro-char')];
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let introTimer = 0;
+        const dotReference = document.createElement('canvas');
+        const dotReferenceContext = dotReference.getContext('2d', { willReadFrequently: true });
+        const dotVisibleHeight = 0.474;
+        const dotSize = 5;
+        const dotGap = 18;
+        const dotCell = dotSize + dotGap;
+        let dotPixels = null;
+        let dotFrame = 0;
+        let dotLastFrame = 0;
+        let dotReady = false;
+        let dotGrid = { width: 0, height: 0, cols: 0, rows: 0, count: 0, centerX: 0, centerY: 0, reach: 1 };
+        let dotRest = new Float32Array(0);
+        let dotOffset = new Float32Array(0);
+        let dotVelocity = new Float32Array(0);
+        let dotNextVelocity = new Float32Array(0);
+        let dotNextOffset = new Float32Array(0);
+        let dotWave = new Float32Array(0);
+        let dotAllowed = new Uint8Array(0);
+        const dotPointer = { x: 0, y: 0, vx: 0, vy: 0, time: 0, inside: false, presence: 0 };
+        const dotShocks = [];
+        let dotIntroStart = 0;
+
+        introChars.forEach((character, index) => {
+          character.style.setProperty('--intro-delay', `${index * 50}ms`);
+        });
+
+        function startAboutIntro() {
+          window.clearTimeout(introTimer);
+          aboutSection.classList.remove('has-intro-complete');
+          aboutSection.classList.remove('has-achievements');
+          intro.classList.remove('is-active');
+          requestAnimationFrame(() => intro.classList.add('is-active'));
+          introTimer = window.setTimeout(() => {
+            if (aboutSection.classList.contains('is-visible')) {
+              aboutSection.classList.add('has-intro-complete');
+              aboutSection.classList.add('has-achievements');
+            }
+          }, reducedMotion ? 0 : 1350);
+        }
+
+        function resetAboutIntro() {
+          window.clearTimeout(introTimer);
+          introTimer = 0;
+          aboutSection.classList.remove('has-intro-complete');
+          aboutSection.classList.remove('has-achievements');
+          intro.classList.remove('is-active');
+        }
+
+        function resizeDotField() {
+          const rect = aboutSection.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          dotCanvas.width = Math.round(rect.width * dpr);
+          dotCanvas.height = Math.round(rect.height * dpr);
+          dotContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+          dotReference.width = Math.round(rect.width);
+          dotReference.height = Math.round(rect.height);
+          if (referenceImage.complete && referenceImage.naturalWidth) {
+            dotReferenceContext.drawImage(referenceImage, 0, 0, rect.width, rect.height);
+            dotPixels = dotReferenceContext.getImageData(0, 0, dotReference.width, dotReference.height).data;
+            dotReady = true;
+            rebuildDotGrid();
+          }
+          if (aboutSection.classList.contains('is-visible')) {
+            startDotField();
+          }
+        }
+
+        function isClearDotBackground(x, y) {
+          if (!dotPixels || !dotReference.width || !dotReference.height) return false;
+          if (x < aboutSection.clientWidth * 0.62 &&
+              y > aboutSection.clientHeight * 0.085 &&
+              y < aboutSection.clientHeight * 0.165) return true;
+          const clearance = 9;
+          for (let oy = -clearance; oy <= clearance; oy += 3) {
+            for (let ox = -clearance; ox <= clearance; ox += 3) {
+              if (ox * ox + oy * oy > clearance * clearance) continue;
+              const px = Math.max(0, Math.min(dotReference.width - 1, Math.round(x + ox)));
+              const py = Math.max(0, Math.min(dotReference.height - 1, Math.round(y + oy)));
+              const i = (py * dotReference.width + px) * 4;
+              if (dotPixels[i] > 24 || dotPixels[i + 1] > 24 || dotPixels[i + 2] > 26) return false;
+            }
+          }
+          return true;
+        }
+
+        function rebuildDotGrid() {
+          const width = aboutSection.clientWidth;
+          const height = aboutSection.clientHeight * dotVisibleHeight;
+          const cols = Math.max(1, Math.floor((width + dotGap) / dotCell));
+          const rows = Math.max(1, Math.floor((height + dotGap) / dotCell));
+          const startX = (width - (cols * dotCell - dotGap)) / 2 + dotSize / 2;
+          const startY = (height - (rows * dotCell - dotGap)) / 2 + dotSize / 2;
+          const count = cols * rows;
+          dotGrid = {
+            width,
+            height,
+            cols,
+            rows,
+            count,
+            centerX: width / 2,
+            centerY: height / 2,
+            reach: Math.hypot(width, height) / 2
+          };
+          dotRest = new Float32Array(count * 2);
+          dotOffset = new Float32Array(count * 2);
+          dotVelocity = new Float32Array(count * 2);
+          dotNextVelocity = new Float32Array(count * 2);
+          dotNextOffset = new Float32Array(count * 2);
+          dotWave = new Float32Array(count * 4);
+          dotAllowed = new Uint8Array(count);
+          for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+              const node = row * cols + col;
+              const index = node * 2;
+              const x = startX + col * dotCell;
+              const y = startY + row * dotCell;
+              dotRest[index] = x;
+              dotRest[index + 1] = y;
+              dotAllowed[node] = isClearDotBackground(x, y) ? 1 : 0;
+            }
+          }
+          dotIntroStart = 0;
+        }
+
+        function smoothDotStep(value) {
+          const t = Math.max(0, Math.min(1, value));
+          return t * t * t * (t * (t * 6 - 15) + 10);
+        }
+
+        function dotMotionActive(now) {
+          if (dotShocks.length || (dotIntroStart && now - dotIntroStart < 1600)) return true;
+          if (Math.abs(dotPointer.vx) + Math.abs(dotPointer.vy) > 1) return true;
+          const targetPresence = dotPointer.inside ? 1 : 0;
+          if (Math.abs(targetPresence - dotPointer.presence) > .002) return true;
+          for (let i = 0; i < dotOffset.length; i++) {
+            if (Math.abs(dotOffset[i]) > .02 || Math.abs(dotVelocity[i]) > .5) return true;
+          }
+          return false;
+        }
+
+        function wakeDotField() {
+          if (!dotReady || dotFrame || !aboutSection.classList.contains('is-visible')) return;
+          dotLastFrame = performance.now();
+          dotFrame = requestAnimationFrame(animateDots);
+        }
+
+        function stepDotGrid(dt, now) {
+          if (reducedMotion || !dotGrid.count) return;
+          const zeta = 1 - .85 * .6;
+          const omega = 4 / (zeta * .8);
+          const stiffness = omega * omega;
+          const damping = 2 * zeta * omega;
+          const coupling = (.4 * 900) ** 2 / (dotCell * dotCell);
+          const viscosity = Math.sqrt(coupling) * .06;
+          const steps = Math.min(4, Math.max(1, Math.ceil(dt / (1 / 120))));
+          const h = dt / steps;
+          const pointerSpeed = Math.hypot(dotPointer.vx, dotPointer.vy);
+          const drive = dotPointer.inside
+            ? 6500 * Math.tanh(pointerSpeed / 900)
+            : 0;
+          const dirX = pointerSpeed > .001 ? dotPointer.vx / pointerSpeed : 0;
+          const dirY = pointerSpeed > .001 ? dotPointer.vy / pointerSpeed : 0;
+          const activeShocks = dotShocks.map(shock => {
+            const front = ((now - shock.start) / 1000) * 650;
+            const power = smoothDotStep(1 - front / 320);
+            return { ...shock, front, amplitude: power * 5 * dotCell * .24 };
+          });
+          const presenceTarget = dotPointer.inside ? 1 : 0;
+          dotPointer.presence += (presenceTarget - dotPointer.presence) * (1 - Math.exp(-dt / .2));
+          dotWave.fill(0);
+
+          for (let node = 0; node < dotGrid.count; node++) {
+            const index = node * 2;
+            const waveIndex = node * 4;
+            const x = dotRest[index];
+            const y = dotRest[index + 1];
+            for (const shock of activeShocks) {
+              if (shock.amplitude <= 0) continue;
+              const px = x - shock.x;
+              const py = y - shock.y;
+              const distance = Math.hypot(px, py);
+              if (distance < .001) continue;
+              const u = (distance - shock.front) / (dotCell * 1.4);
+              if (Math.abs(u) >= 3) continue;
+              const nx = px / distance;
+              const ny = py / distance;
+              const profile = Math.exp(-u * u);
+              const push = shock.amplitude * profile;
+              const rate = (shock.amplitude * 2 * u * profile / (dotCell * 1.4)) * 650;
+              dotWave[waveIndex] += nx * push;
+              dotWave[waveIndex + 1] += ny * push;
+              dotWave[waveIndex + 2] += nx * rate;
+              dotWave[waveIndex + 3] += ny * rate;
+            }
+          }
+
+          for (let substep = 0; substep < steps; substep++) {
+            for (let node = 0; node < dotGrid.count; node++) {
+              const index = node * 2;
+              const row = Math.floor(node / dotGrid.cols);
+              const col = node - row * dotGrid.cols;
+              const ox = dotOffset[index];
+              const oy = dotOffset[index + 1];
+              const vx = dotVelocity[index];
+              const vy = dotVelocity[index + 1];
+              let ax = -stiffness * ox - damping * vx;
+              let ay = -stiffness * oy - damping * vy;
+
+              if (coupling > 0) {
+                let lapX = -4 * ox;
+                let lapY = -4 * oy;
+                let lapVx = -4 * vx;
+                let lapVy = -4 * vy;
+                if (col > 0) {
+                  lapX += dotOffset[index - 2]; lapY += dotOffset[index - 1];
+                  lapVx += dotVelocity[index - 2]; lapVy += dotVelocity[index - 1];
+                }
+                if (col < dotGrid.cols - 1) {
+                  lapX += dotOffset[index + 2]; lapY += dotOffset[index + 3];
+                  lapVx += dotVelocity[index + 2]; lapVy += dotVelocity[index + 3];
+                }
+                if (row > 0) {
+                  lapX += dotOffset[index - dotGrid.cols * 2]; lapY += dotOffset[index - dotGrid.cols * 2 + 1];
+                  lapVx += dotVelocity[index - dotGrid.cols * 2]; lapVy += dotVelocity[index - dotGrid.cols * 2 + 1];
+                }
+                if (row < dotGrid.rows - 1) {
+                  lapX += dotOffset[index + dotGrid.cols * 2]; lapY += dotOffset[index + dotGrid.cols * 2 + 1];
+                  lapVx += dotVelocity[index + dotGrid.cols * 2]; lapVy += dotVelocity[index + dotGrid.cols * 2 + 1];
+                }
+                ax += coupling * lapX + viscosity * lapVx;
+                ay += coupling * lapY + viscosity * lapVy;
+              }
+
+              if (drive > 0) {
+                const px = dotRest[index] + ox - dotPointer.x;
+                const py = dotRest[index + 1] + oy - dotPointer.y;
+                const distance = Math.hypot(px, py);
+                if (distance < 140) {
+                  const weight = smoothDotStep(1 - distance / 140) * drive;
+                  const nx = distance > .001 ? px / distance : 0;
+                  const ny = distance > .001 ? py / distance : 0;
+                  ax += weight * (dirX + nx * .6);
+                  ay += weight * (dirY + ny * .6);
+                }
+              }
+
+              for (const shock of activeShocks) {
+                if (shock.amplitude <= 0) continue;
+                const px = dotRest[index] - shock.x;
+                const py = dotRest[index + 1] - shock.y;
+                const distance = Math.hypot(px, py);
+                if (distance < .001) continue;
+                const u = (distance - shock.front) / (dotCell * 1.4);
+                if (Math.abs(u) < 3) {
+                  const push = shock.amplitude * Math.exp(-u * u) * stiffness * .35;
+                  ax += px / distance * push;
+                  ay += py / distance * push;
+                }
+              }
+
+              dotNextVelocity[index] = vx + ax * h;
+              dotNextVelocity[index + 1] = vy + ay * h;
+              dotNextOffset[index] = ox + dotNextVelocity[index] * h;
+              dotNextOffset[index + 1] = oy + dotNextVelocity[index + 1] * h;
+            }
+            [dotVelocity, dotNextVelocity] = [dotNextVelocity, dotVelocity];
+            [dotOffset, dotNextOffset] = [dotNextOffset, dotOffset];
+          }
+          for (let i = dotShocks.length - 1; i >= 0; i--) {
+            if (activeShocks[i].front > 320 + dotCell * 4) dotShocks.splice(i, 1);
+          }
+          const decay = 1 - Math.exp(-dt / .08);
+          dotPointer.vx -= dotPointer.vx * decay;
+          dotPointer.vy -= dotPointer.vy * decay;
+        }
+
+        function renderDots(now) {
+          if (!dotGrid.count) return;
+          const { width, height, count, centerX, centerY, reach } = dotGrid;
+          dotContext.clearRect(0, 0, width, aboutSection.clientHeight);
+          for (let node = 0; node < count; node++) {
+            if (!dotAllowed[node]) continue;
+            const index = node * 2;
+            const waveIndex = node * 4;
+            const x = dotRest[index] + dotOffset[index] + dotWave[waveIndex];
+            const y = dotRest[index + 1] + dotOffset[index + 1] + dotWave[waveIndex + 1];
+            if (y > height - 6 || !isClearDotBackground(x, y)) continue;
+            const velocityX = dotVelocity[index] + dotWave[waveIndex + 2];
+            const velocityY = dotVelocity[index + 1] + dotWave[waveIndex + 3];
+            const speed = Math.hypot(velocityX, velocityY);
+            let energy = Math.min(1, (speed / 380) * .85 +
+              (Math.hypot(dotOffset[index] + dotWave[waveIndex], dotOffset[index + 1] + dotWave[waveIndex + 1]) / (dotCell * 2.2)) * .35);
+            if (dotPointer.presence > .001) {
+              const distance = Math.hypot(x - dotPointer.x, y - dotPointer.y);
+              if (distance < 140) energy = Math.max(energy, smoothDotStep(1 - distance / 140) * .4 * dotPointer.presence);
+            }
+            let scale = 1;
+            if (!reducedMotion && dotIntroStart) {
+              const elapsed = (now - dotIntroStart) / 1000;
+              const front = elapsed * reach * 1.25;
+              const distance = Math.hypot(dotRest[index] - centerX, dotRest[index + 1] - centerY);
+              const appear = Math.max(0, Math.min(1, (front - distance) / (dotCell * 4)));
+              const t = Math.max(0, Math.min(1, appear));
+              const back = 1.9;
+              const u = t - 1;
+              scale = appear >= 1 ? 1 : 1 + u * u * ((back + 1) * u + back);
+              energy = Math.max(energy, Math.sin(appear * Math.PI) * .6);
+              if (elapsed >= 1.6) dotIntroStart = 0;
+            }
+            if (scale <= .001) continue;
+            const colorMix = Math.max(0, Math.min(1, energy * 1.2));
+            const base = [58, 52, 70];
+            const red = Math.round(base[0] + (255 - base[0]) * colorMix);
+            const green = Math.round(base[1] + (255 - base[1]) * colorMix);
+            const blue = Math.round(base[2] + (255 - base[2]) * colorMix);
+            const radius = dotSize * .5 * (1 + .8 * energy) * scale;
+            const halfLength = Math.min(dotSize * 2, speed * .5 * .02) * scale;
+            const rawAngle = speed > .001 ? Math.atan2(velocityY, velocityX) : 0;
+            const axis = Math.floor(rawAngle / (Math.PI / 2) + .5) * (Math.PI / 2);
+            const directionBlend = Math.max(0, Math.min(1, (speed - 8) / 62));
+            const angle = axis + (rawAngle - axis) * directionBlend * (3 - 2 * directionBlend);
+            dotContext.save();
+            dotContext.translate(x, y);
+            dotContext.rotate(angle);
+            dotContext.globalAlpha = .85 + energy * .15;
+            dotContext.fillStyle = `rgb(${red} ${green} ${blue})`;
+            if (energy > .02) {
+              dotContext.shadowColor = `rgba(255,255,255,${.35 + energy * .45})`;
+              dotContext.shadowBlur = .5 * energy * 10;
+            }
+            dotContext.beginPath();
+            dotContext.roundRect(-halfLength - radius, -radius, (halfLength + radius) * 2, radius * 2, radius);
+            dotContext.fill();
+            dotContext.restore();
+          }
+        }
+
+        function animateDots(now) {
+          dotFrame = 0;
+          if (!aboutSection.classList.contains('is-visible')) return;
+          const dt = dotLastFrame ? Math.min(.033, (now - dotLastFrame) / 1000) : 1 / 60;
+          dotLastFrame = now;
+          stepDotGrid(dt, now);
+          renderDots(now);
+          if (!reducedMotion && dotMotionActive(now)) dotFrame = requestAnimationFrame(animateDots);
+          else dotLastFrame = 0;
+        }
+
+        function startDotField() {
+          if (!dotReady || !aboutSection.classList.contains('is-visible')) return;
+          if (!dotIntroStart && !reducedMotion) dotIntroStart = performance.now();
+          renderDots(performance.now());
+          wakeDotField();
+        }
+
+        referenceImage.addEventListener('load', resizeDotField, { once: true });
+        new ResizeObserver(resizeDotField).observe(aboutSection);
+        aboutSection.addEventListener('pointermove', event => {
+          if (event.pointerType !== 'mouse') return;
+          const rect = aboutSection.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          const time = event.timeStamp || performance.now();
+          if (dotPointer.inside && dotPointer.time) {
+            const elapsed = Math.max(4, time - dotPointer.time) / 1000;
+            const vx = (x - dotPointer.x) / elapsed;
+            const vy = (y - dotPointer.y) / elapsed;
+            dotPointer.vx += (vx - dotPointer.vx) * .6;
+            dotPointer.vy += (vy - dotPointer.vy) * .6;
+          } else {
+            dotPointer.vx = 0;
+            dotPointer.vy = 0;
+          }
+          dotPointer.x = x;
+          dotPointer.y = y;
+          dotPointer.time = time;
+          dotPointer.inside = y <= dotGrid.height;
+          wakeDotField();
+        });
+        aboutSection.addEventListener('pointerleave', () => {
+          dotPointer.inside = false;
+          dotPointer.time = 0;
+          wakeDotField();
+        });
+        aboutSection.addEventListener('pointerdown', event => {
+          if (reducedMotion || event.button !== 0) return;
+          const rect = aboutSection.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          if (x < 0 || y < 0 || x > dotGrid.width || y > dotGrid.height) return;
+          dotShocks.push({ x, y, start: performance.now() });
+          if (dotShocks.length > 6) dotShocks.shift();
+          wakeDotField();
+        });
+        const aboutObserver = new IntersectionObserver(([entry]) => {
+          aboutSection.classList.toggle('is-visible', entry.isIntersecting);
+          aboutLink.classList.toggle('is-active', entry.isIntersecting);
+          if (entry.isIntersecting) aboutLink.setAttribute('aria-current', 'page');
+          else aboutLink.removeAttribute('aria-current');
+          if (entry.isIntersecting) {
+            startDotField();
+            startAboutIntro();
+            startAboutTagShine();
+          } else {
+            resetAboutIntro();
+            stopAboutTagShine();
+          }
+          if (!entry.isIntersecting && dotFrame) {
+            cancelAnimationFrame(dotFrame);
+            dotFrame = 0;
+            dotContext.clearRect(0, 0, dotCanvas.width, dotCanvas.height);
+          }
+          if (entry.isIntersecting) startExperienceCycle();
+          else stopExperienceCycle();
+        }, { threshold: 0.12 });
+        aboutObserver.observe(aboutSection);
+
+        const projectsObserver = new IntersectionObserver(([entry]) => {
+          projectsLink.classList.toggle('is-active', entry.isIntersecting);
+          if (entry.isIntersecting) projectsLink.setAttribute('aria-current', 'page');
+          else projectsLink.removeAttribute('aria-current');
+          if (entry.isIntersecting) {
+            startProjectsGrid();
+            aiWorkflowLink.classList.remove('is-active');
+            aiWorkflowLink.removeAttribute('aria-current');
+            setProjectCard(defaultProjectIndex);
+            startProjectTitleShine();
+            projectsSection.classList.remove('is-dealing');
+            if (!reducedMotion) {
+              void projectsSection.offsetWidth;
+              projectsSection.classList.add('is-dealing');
+              window.setTimeout(() => projectsSection.classList.remove('is-dealing'), 1400);
+            }
+          } else {
+            stopProjectsGrid();
+            stopProjectTitleShine();
+          }
+        }, { threshold: 0.3 });
+        projectsObserver.observe(projectsSection);
+
+        const aiWorkflowObserver = new IntersectionObserver(([entry]) => {
+          aiWorkflowLink.classList.toggle('is-active', entry.isIntersecting);
+          if (entry.isIntersecting) aiWorkflowLink.setAttribute('aria-current', 'page');
+          else aiWorkflowLink.removeAttribute('aria-current');
+          if (entry.isIntersecting) {
+            startProjectsGrid(aiWorkflowSection);
+            projectsLink.classList.remove('is-active');
+            projectsLink.removeAttribute('aria-current');
+          }
+          else stopProjectsGrid(aiWorkflowSection);
+        }, { threshold: 0.3 });
+        aiWorkflowObserver.observe(aiWorkflowSection);
+
+        function setWorkflowItem(index) {
+          const currentIndex = workflowGalleryItems.findIndex(item => item.classList.contains('is-active'));
+          const nextMedia = workflowGalleryItems[index]?.querySelector('.workflow-gallery-media');
+          if (nextMedia && currentIndex !== index) {
+            nextMedia.scrollLeft = 0;
+            nextMedia.scrollTop = 0;
+          }
+          workflowGalleryItems.forEach((item, itemIndex) => {
+            const active = itemIndex === index;
+            item.classList.toggle('is-active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+          updateWorkflowMedia();
+        }
+
+        function revealWorkflowScrollbar(media) {
+          media.classList.add('is-scrollbar-visible');
+          window.clearTimeout(media.scrollbarHideTimer);
+          media.scrollbarHideTimer = window.setTimeout(() => {
+            media.classList.remove('is-scrollbar-visible');
+          }, 900);
+        }
+
+        function handleWorkflowGalleryWheel(event) {
+          const item = event.target.closest('.workflow-gallery-item');
+          if (!item || !event.cancelable) return;
+          event.preventDefault();
+          event.stopPropagation();
+          if (!item.classList.contains('is-active')) return;
+          const media = item.querySelector('.workflow-gallery-media');
+          const deltaX = event.deltaX;
+          const deltaY = event.deltaY;
+          if (media.classList.contains('can-scroll-x') && media.scrollWidth > media.clientWidth) {
+            revealWorkflowScrollbar(media);
+            media.scrollLeft += Math.abs(deltaY) > Math.abs(deltaX) ? deltaY : deltaX;
+          } else if (media.classList.contains('can-scroll-y') && media.scrollHeight > media.clientHeight) {
+            revealWorkflowScrollbar(media);
+            media.scrollTop += Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
+          }
+        }
+
+        function updateWorkflowMedia() {
+          const gallery = document.querySelector('.workflow-gallery');
+          const galleryWidth = gallery.clientWidth;
+          const galleryGap = parseFloat(getComputedStyle(gallery).columnGap) || 0;
+          const collapsedWidth = Math.min(...workflowGalleryItems.map(item => parseFloat(getComputedStyle(item).flexBasis)));
+          const activeWidth = galleryWidth - collapsedWidth * (workflowGalleryItems.length - 1) - galleryGap * (workflowGalleryItems.length - 1);
+          workflowGalleryItems.forEach(item => {
+            const media = item.querySelector('.workflow-gallery-media');
+            const image = media.querySelector('img');
+            if (!image.naturalWidth || activeWidth <= 0 || !media.clientHeight) return;
+            const frameWidth = activeWidth;
+            const frameHeight = media.clientHeight;
+            const imageRatio = image.naturalWidth / image.naturalHeight;
+            const frameRatio = frameWidth / frameHeight;
+            if (item.dataset.fixedMedia === 'true') {
+              const imageHeight = frameWidth / imageRatio;
+              image.style.width = `${frameWidth}px`;
+              image.style.height = `${imageHeight}px`;
+              media.classList.toggle('can-scroll-y', imageHeight > frameHeight + 1);
+              media.classList.remove('can-scroll-x');
+            } else if (imageRatio > frameRatio) {
+              const imageWidth = frameHeight * imageRatio;
+              image.style.width = `${imageWidth}px`;
+              image.style.height = `${frameHeight}px`;
+              media.classList.toggle('can-scroll-x', imageWidth > frameWidth + 1);
+              media.classList.remove('can-scroll-y');
+            } else {
+              const imageHeight = frameWidth / imageRatio;
+              image.style.width = `${frameWidth}px`;
+              image.style.height = `${imageHeight}px`;
+              media.classList.toggle('can-scroll-y', imageHeight > frameHeight + 1);
+              media.classList.remove('can-scroll-x');
+            }
+            if (!item.classList.contains('is-active')) {
+              media.scrollLeft = 0;
+              media.scrollTop = 0;
+            }
+          });
+        }
+
+        workflowGalleryItems.forEach((item, index) => {
+          item.addEventListener('pointerenter', () => setWorkflowItem(index));
+          item.addEventListener('focus', () => setWorkflowItem(index));
+          item.addEventListener('click', () => setWorkflowItem(index));
+          const media = item.querySelector('.workflow-gallery-media');
+          media.querySelector('img').addEventListener('load', updateWorkflowMedia);
+          item.addEventListener('keydown', event => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+            event.preventDefault();
+            const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + workflowGalleryItems.length) % workflowGalleryItems.length;
+            setWorkflowItem(next);
+            workflowGalleryItems[next].focus();
+          });
+        });
+        workflowGallery.addEventListener('wheel', handleWorkflowGalleryWheel, { passive: false });
+        new ResizeObserver(updateWorkflowMedia).observe(document.querySelector('.workflow-gallery'));
+        requestAnimationFrame(updateWorkflowMedia);
+
+        const researchGallery = document.querySelector('.research-workflow-gallery');
+        const researchGalleryItems = [...researchGallery.querySelectorAll('.workflow-gallery-item')];
+        const researchVideoItem = researchGallery.querySelector('video')?.closest('.workflow-gallery-item');
+
+        function setResearchItem(index, playVideo = false) {
+          const previousIndex = researchGalleryItems.findIndex(item => item.classList.contains('is-active'));
+          const video = researchGallery.querySelector('video');
+          if (previousIndex !== index) {
+            const media = researchGalleryItems[index]?.querySelector('.workflow-gallery-media');
+            if (media) {
+              media.scrollLeft = 0;
+              media.scrollTop = 0;
+            }
+            video?.pause();
+            if (video) video.currentTime = 0;
+          }
+          researchGalleryItems.forEach((item, itemIndex) => {
+            const active = itemIndex === index;
+            item.classList.toggle('is-active', active);
+            item.setAttribute('aria-pressed', String(active));
+          });
+          updateResearchGalleryMedia();
+          if (playVideo && researchGalleryItems[index] === researchVideoItem && video) {
+            video.play().catch(() => {});
+          }
+        }
+
+        function updateResearchGalleryMedia() {
+          const galleryWidth = researchGallery.clientWidth;
+          const gap = parseFloat(getComputedStyle(researchGallery).columnGap) || 0;
+          const collapsedWidth = Math.min(...researchGalleryItems.map(item => {
+            const basis = getComputedStyle(item).flexBasis;
+            const value = parseFloat(basis);
+            return basis.endsWith('%') ? galleryWidth * value / 100 : value;
+          }));
+          const activeWidth = galleryWidth - collapsedWidth * (researchGalleryItems.length - 1) - gap * (researchGalleryItems.length - 1);
+          researchGalleryItems.forEach(item => {
+            const media = item.querySelector('.workflow-gallery-media');
+            const visual = media.querySelector('img, video');
+            const width = visual.naturalWidth || visual.videoWidth;
+            const height = visual.naturalHeight || visual.videoHeight;
+            if (!width || !height || activeWidth <= 0 || !media.clientHeight) return;
+            const frameWidth = activeWidth;
+            const frameHeight = media.clientHeight;
+            const ratio = width / height;
+            if (ratio > frameWidth / frameHeight) {
+              const imageWidth = frameHeight * ratio;
+              visual.style.width = `${imageWidth}px`;
+              visual.style.height = `${frameHeight}px`;
+              media.classList.toggle('can-scroll-x', imageWidth > frameWidth + 1);
+              media.classList.remove('can-scroll-y');
+            } else {
+              const imageHeight = frameWidth / ratio;
+              visual.style.width = `${frameWidth}px`;
+              visual.style.height = `${imageHeight}px`;
+              media.classList.toggle('can-scroll-y', imageHeight > frameHeight + 1);
+              media.classList.remove('can-scroll-x');
+            }
+            if (!item.classList.contains('is-active')) {
+              media.scrollLeft = 0;
+              media.scrollTop = 0;
+            }
+          });
+        }
+
+        researchGalleryItems.forEach((item, index) => {
+          item.addEventListener('pointerenter', () => setResearchItem(index, true));
+          item.addEventListener('focus', () => setResearchItem(index, true));
+          item.addEventListener('click', () => setResearchItem(index, true));
+          const media = item.querySelector('.workflow-gallery-media');
+          media.querySelector('img')?.addEventListener('load', updateResearchGalleryMedia);
+          media.querySelector('video')?.addEventListener('loadedmetadata', updateResearchGalleryMedia);
+          item.addEventListener('keydown', event => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+            event.preventDefault();
+            const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + researchGalleryItems.length) % researchGalleryItems.length;
+            setResearchItem(next, true);
+            researchGalleryItems[next].focus();
+          });
+        });
+        researchGallery.addEventListener('wheel', handleWorkflowGalleryWheel, { passive: false });
+        researchGallery.addEventListener('pointerleave', () => {
+          const video = researchGallery.querySelector('video');
+          video?.pause();
+          if (video) video.currentTime = 0;
+        });
+        new ResizeObserver(updateResearchGalleryMedia).observe(researchGallery);
+        requestAnimationFrame(updateResearchGalleryMedia);
+
+        const geographyNames = [
+          '上海', '云南', '北京', '四川', '安徽', '山西', '广东', '广西', '张家界', '新疆', '武汉',
+          '江西', '浙江', '海南', '湖南', '福建', '西藏', '长沙', '陕西', '青海',
+          '中东非', '印尼', '大洋洲', '新马泰', '欧洲', '美国', '马尔代夫'
+        ];
+        const geographyTrack = document.querySelector('.geo-logo-loop-track');
+        const geographyLoop = document.querySelector('.geo-logo-loop');
+        const geographyList = document.createElement('ul');
+        geographyList.className = 'geo-logo-list';
+        geographyList.setAttribute('role', 'list');
+        geographyList.setAttribute('aria-label', '地理图标');
+        geographyNames.forEach(name => {
+          const item = document.createElement('li');
+          item.className = 'geo-logo-item';
+          item.tabIndex = 0;
+          item.setAttribute('role', 'img');
+          item.setAttribute('aria-label', name);
+          const image = document.createElement('img');
+          image.src = `assets/ai-workflow/geography/${name}.png`;
+          image.alt = '';
+          image.draggable = false;
+          item.append(image);
+          geographyList.append(item);
+        });
+        const duplicateGeographyList = geographyList.cloneNode(true);
+        duplicateGeographyList.setAttribute('aria-hidden', 'true');
+        duplicateGeographyList.querySelectorAll('.geo-logo-item').forEach(item => { item.tabIndex = -1; });
+        geographyTrack.replaceChildren(geographyList, duplicateGeographyList);
+        const geographyTooltip = geographyLoop.querySelector('.geo-logo-tooltip');
+        let activeGeographyItem = null;
+        const hideGeographyTooltip = () => {
+          activeGeographyItem = null;
+          geographyTooltip.textContent = '';
+          geographyTooltip.classList.remove('is-visible');
+        };
+        const positionGeographyTooltip = () => {
+          if (!activeGeographyItem) return;
+          const loopRect = geographyLoop.getBoundingClientRect();
+          const itemRect = activeGeographyItem.getBoundingClientRect();
+          const halfTooltip = geographyTooltip.getBoundingClientRect().width / 2;
+          const center = itemRect.left + itemRect.width / 2 - loopRect.left;
+          const left = Math.max(halfTooltip + 8, Math.min(loopRect.width - halfTooltip - 8, center));
+          geographyTooltip.style.left = `${left}px`;
+        };
+        const showGeographyTooltip = item => {
+          const name = item?.getAttribute('aria-label');
+          if (!name) return hideGeographyTooltip();
+          activeGeographyItem = item;
+          geographyTooltip.textContent = name;
+          geographyTooltip.classList.add('is-visible');
+          requestAnimationFrame(positionGeographyTooltip);
+        };
+        geographyLoop.addEventListener('pointerover', event => {
+          const item = event.target.closest('.geo-logo-item');
+          if (item) showGeographyTooltip(item);
+        });
+        geographyLoop.addEventListener('pointerleave', hideGeographyTooltip);
+        geographyLoop.addEventListener('focusin', event => {
+          const item = event.target.closest('.geo-logo-item');
+          if (item) showGeographyTooltip(item);
+        });
+        geographyLoop.addEventListener('focusout', event => {
+          if (!event.relatedTarget?.closest?.('.geo-logo-item')) hideGeographyTooltip();
+        });
+        const resizeGeographyLoop = () => {
+          const itemWidth = geographyLoop.clientWidth / 7;
+          geographyLoop.style.setProperty('--geo-logo-item-width', `${itemWidth}px`);
+          requestAnimationFrame(positionGeographyTooltip);
+          requestAnimationFrame(() => {
+            const listWidth = geographyList.getBoundingClientRect().width;
+            geographyTrack.style.setProperty('--geo-loop-duration', `${Math.max(24, listWidth / 62)}s`);
+          });
+        };
+        new ResizeObserver(resizeGeographyLoop).observe(geographyLoop);
+        geographyList.querySelectorAll('img').forEach(image => image.addEventListener('load', resizeGeographyLoop, { once: true }));
+        requestAnimationFrame(resizeGeographyLoop);
+
+        const experienceCards = [...document.querySelectorAll('.experience-card')];
+        let experienceIndex = 0;
+        let experienceTimer = 0;
+        let experiencePaused = false;
+
+        function setExperience(index) {
+          experienceIndex = index;
+          experienceCards.forEach((card, cardIndex) => {
+            const active = cardIndex === index;
+            card.classList.toggle('is-active', active);
+            card.setAttribute('aria-pressed', String(active));
+          });
+        }
+
+        function stopExperienceCycle() {
+          window.clearInterval(experienceTimer);
+          experienceTimer = 0;
+        }
+
+        function startExperienceCycle() {
+          stopExperienceCycle();
+          if (!aboutSection.classList.contains('is-visible') || experiencePaused) return;
+          experienceTimer = window.setInterval(() => {
+            setExperience((experienceIndex + 1) % experienceCards.length);
+          }, 1500);
+        }
+
+        experienceCards.forEach((card, index) => {
+          card.addEventListener('mouseenter', () => {
+            experiencePaused = true;
+            stopExperienceCycle();
+            setExperience(index);
+          });
+          card.addEventListener('focus', () => {
+            experiencePaused = true;
+            stopExperienceCycle();
+            setExperience(index);
+          });
+          card.addEventListener('pointerleave', (event) => {
+            if (!event.relatedTarget?.closest('.experience-card')) {
+              experiencePaused = false;
+              startExperienceCycle();
+            }
+          });
+          card.addEventListener('click', () => setExperience(index));
+        });
+        document.querySelector('.experience-gallery').addEventListener('mouseleave', () => {
+          experiencePaused = false;
+          startExperienceCycle();
+        });
+        document.querySelector('.experience-gallery').addEventListener('focusout', (event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            experiencePaused = false;
+            startExperienceCycle();
+          }
+        });
+        startExperienceCycle();
+
+        const homeSection = document.querySelector('#home');
+        const navBackdrop = document.querySelector('.nav-backdrop');
+        let scrollFrame = 0;
+        function scrollToPosition(target, hash) {
+          if (scrollFrame) cancelAnimationFrame(scrollFrame);
+          const start = window.scrollY;
+          const distance = target - start;
+          const duration = 380;
+          const startedAt = performance.now();
+          const step = (now) => {
+            const progress = Math.min(1, (now - startedAt) / duration);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            window.scrollTo(0, start + distance * eased);
+            if (progress < 1) scrollFrame = requestAnimationFrame(step);
+            else {
+              scrollFrame = 0;
+              history.replaceState(null, '', `#${hash}`);
+            }
+          };
+          scrollFrame = requestAnimationFrame(step);
+        }
+
+        function scrollToSection(section) {
+          scrollToPosition(section.getBoundingClientRect().top + window.scrollY, section.id);
+        }
+
+        function getAchievementsTop() {
+          const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
+          const achievementStart = aboutSection.clientHeight * 0.474;
+          return Math.max(aboutTop, aboutTop + achievementStart - navBackdrop.offsetHeight);
+        }
+
+        function scrollToAchievements() {
+          scrollToPosition(getAchievementsTop(), 'about');
+        }
+
+        aboutLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          scrollToSection(aboutSection);
+        });
+        projectsLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          scrollToSection(projectsSection);
+        });
+        aiWorkflowLink.addEventListener('click', event => {
+          event.preventDefault();
+          scrollToSection(aiWorkflowSection);
+        });
+        const brand = document.querySelector('.brand');
+        brand.addEventListener('click', (event) => {
+          event.preventDefault();
+          scrollToSection(homeSection);
+        });
+        const brandMark = document.querySelector('.brand-mark');
+        let brandPointerHover = false;
+        let brandLensHover = false;
+        let brandAnimationStart = 0;
+        let brandLensTimer = 0;
+        function syncBrandAnimation() {
+          const shouldPlay = (brandPointerHover || brandLensHover) && !reducedMotion;
+          if (shouldPlay === brandMark.classList.contains('is-playing')) return;
+          if (shouldPlay) {
+            brandAnimationStart = performance.now();
+            brandMark.classList.add('is-playing');
+            brand.classList.add('is-playing');
+          } else {
+            brandMark.classList.remove('is-playing');
+            brand.classList.remove('is-playing');
+            window.clearTimeout(brandLensTimer);
+            brandLensTimer = 0;
+          }
+        }
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reducedMotion) {
+          brand.addEventListener('mouseenter', () => {
+            brandPointerHover = true;
+            syncBrandAnimation();
+          });
+          brand.addEventListener('mouseleave', () => {
+            brandPointerHover = false;
+            syncBrandAnimation();
+          });
+        }
+        const projectCards = [...document.querySelectorAll('.project-card')];
+        const projectDetailImages = [
+          'assets/project-details/pages/商家经营工作台.png',
+          'assets/project-details/pages/成长体系.png',
+          'assets/project-details/pages/B端数据组件.png',
+          'assets/project-details/pages/旅游门店Ai搜索.png',
+          'assets/project-details/pages/Trip出海预订.png',
+          'assets/project-details/pages/钉钉小程序.png',
+          'assets/project-details/pages/猫超入驻.png'
+        ];
+        const projectDetailChapters = [
+          [
+            ['Before产品形态', .584], ['核心工具归纳', .638],
+            ['Cardification卡片容器归纳', .856], ['Display页面展示', .926]
+          ],
+          [
+            ['业务背景', .054], ['调研分析', .085], ['设计策略', .217], ['门店成长等级体系', .323],
+            ['可视化经营诊断', .655]
+          ],
+          [
+            ['自研背景', .055], ['数据可视化组件', .094], ['生成式SDUI应用规范', .244],
+            ['AI搭建助手SDUI渲染数据分析内容', .508], ['B端场景Skill封装+自研插件运用', .671],
+            ['B端可视化图表自研插件', .874]
+          ],
+          [
+            ['业务背景', .034], ['需求痛点', .055], ['售卖分析', .103], ['设计策略', .185],
+            ['“Agent+”酒旅商品精准讲解', .567]
+          ],
+          [
+            ['业务背景', .052], ['可用性测试', .076], ['体验偏好分析', .192], ['商品详情页优化', .3],
+            ['预订确认+下单优化', .517]
+          ],
+          [
+            ['Before产品形态', .06], ['无线端痛点梳理', .15], ['无线端设计策略', .262],
+            ['身份信息展示', .4], ['紧急待办通知', .465],
+            ['核心指标分析', .645], ['首页推荐引导', .812]
+          ],
+          [
+            ['业务背景', .113], ['痛点解析', .157], ['设计策略', .358],
+          ]
+        ];
+        let projectSidebarItems = [];
+        let projectSidebarLabels = [];
+        let projectSidebarTargets = [];
+        let projectSidebarCurrent = [];
+        let projectSidebarFrame = 0;
+        let projectSidebarLastFrame = 0;
+        const projectKindImage = document.querySelector('.project-kind-image');
+        const projectTitleLabel = document.querySelector('.project-title-label');
+        const projectTitleFrame = document.querySelector('.project-title-frame');
+        const projectTitleShine = document.querySelector('.project-title-shine');
+        const projectTitleShineContext = projectTitleShine.getContext('2d');
+        const projectDecoration = document.querySelector('.project-decoration');
+        const projectDescription = document.querySelector('.project-description');
+        const defaultProjectIndex = 3;
+        const projectCardTilts = [20, 15, 10, 0, -10, -15, -20];
+        const projectShinePointer = { x: 0, y: 0, known: false };
+        let projectShineSpot = 0;
+        let projectShineTime = 0;
+        let projectShineFrame = 0;
+        let projectShineVisible = false;
+        let projectShineNear = false;
+
+        function resizeProjectsGrid() {
+          const ratio = Math.min(window.devicePixelRatio || 1, 2);
+          projectsGrid.ratio = ratio;
+          gridSections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
+            projectsGridCanvas[index].width = Math.max(1, Math.round(rect.width * ratio));
+            projectsGridCanvas[index].height = Math.max(1, Math.round(rect.height * ratio));
+            projectsGridContexts[index].setTransform(ratio, 0, 0, ratio, 0, 0);
+          });
+          const rect = projectsSection.getBoundingClientRect();
+          projectsGrid.width = rect.width;
+          projectsGrid.height = rect.height;
+          drawProjectsGrid();
+        }
+
+        function drawProjectsGrid() {
+          const { offsetX, offsetY, ratio } = projectsGrid;
+          for (let canvasIndex = 0; canvasIndex < projectsGridContexts.length; canvasIndex++) {
+          const ctx = projectsGridContexts[canvasIndex];
+          const rect = gridSections[canvasIndex].getBoundingClientRect();
+          const width = rect.width;
+          const height = rect.height;
+          if (!ctx || !width || !height) continue;
+          ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+          ctx.clearRect(0, 0, width, height);
+          ctx.globalAlpha = 1;
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = '#2a2734';
+          ctx.globalAlpha = .6;
+          ctx.beginPath();
+          const startX = -((offsetX % 40) + 40) % 40;
+          const startY = -((offsetY % 40) + 40) % 40;
+          for (let x = startX; x <= width; x += 40) {
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+          }
+          for (let y = startY; y <= height; y += 40) {
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+          }
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+
+          const elapsed = projectsGrid.time - projectsGrid.startedAt;
+          const introRadius = !reducedMotion && elapsed < 1 / 1.8
+            ? elapsed * Math.hypot(width, height) * .9
+            : Infinity;
+          if (introRadius !== Infinity) {
+            const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, Math.max(1, introRadius));
+            gradient.addColorStop(0, 'rgba(0,0,0,1)');
+            gradient.addColorStop(.82, 'rgba(0,0,0,1)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            ctx.globalCompositeOperation = 'source-over';
+          }
+
+          if (reducedMotion) continue;
+          ctx.lineWidth = 1;
+          ctx.lineJoin = 'round';
+          for (const [key, value] of projectsGrid.lit) {
+            const [i, j] = key.split(',').map(Number);
+            const x = i * 40 + 20 - offsetX;
+            const y = j * 40 + 20 - offsetY;
+            ctx.beginPath();
+            ctx.rect(x - 19.5, y - 19.5, 39, 39);
+            ctx.globalAlpha = value * .09;
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.globalAlpha = value * .51;
+            ctx.shadowColor = '#fff';
+            ctx.shadowBlur = value * 4.9;
+            ctx.strokeStyle = '#fff';
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+
+          for (const cascade of projectsGrid.cascades) {
+            const age = projectsGrid.time - cascade.time;
+            if (age > 1.3) continue;
+            ctx.globalAlpha = (1 - age / 1.3) * .75;
+            ctx.shadowColor = '#fff';
+            ctx.shadowBlur = 5;
+            ctx.beginPath();
+            ctx.arc(cascade.x - offsetX, cascade.y - offsetY, age * 40 / .055, 0, Math.PI * 2);
+            ctx.strokeStyle = '#fff';
+            ctx.stroke();
+          }
+          ctx.shadowBlur = 0;
+          ctx.globalAlpha = 1;
+          }
+        }
+
+        function illuminateProjectsGrid(dt) {
+          const decay = Math.exp(-dt / .6);
+          for (const [key, value] of projectsGrid.lit) {
+            const next = value * decay;
+            if (next < .004) projectsGrid.lit.delete(key);
+            else projectsGrid.lit.set(key, next);
+          }
+          const pointer = projectsGrid.pointer;
+          const spot = projectsGrid.spot;
+          const targetPower = pointer && !reducedMotion ? 1 : 0;
+          spot.power += (targetPower - spot.power) * (1 - Math.exp(-(targetPower ? 10 : 5) * dt));
+          if (!pointer || reducedMotion) return;
+
+          const stiffness = 220;
+          const damping = 2 * Math.sqrt(stiffness) * .85;
+          spot.vx += (stiffness * (pointer.x - spot.x) - damping * spot.vx) * dt;
+          spot.vy += (stiffness * (pointer.y - spot.y) - damping * spot.vy) * dt;
+          spot.x += spot.vx * dt;
+          spot.y += spot.vy * dt;
+          const wx = spot.x + projectsGrid.offsetX;
+          const wy = spot.y + projectsGrid.offsetY;
+          const ci = Math.round(wx / 40);
+          const cj = Math.round(wy / 40);
+          let nearest = [ci, cj];
+          let nearestDistance = Infinity;
+          for (let i = ci - 2; i <= ci + 2; i++) {
+            for (let j = cj - 2; j <= cj + 2; j++) {
+              const distance = Math.hypot((i + .5) * 40 - wx, (j + .5) * 40 - wy);
+              if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearest = [i, j];
+              }
+            }
+          }
+          const reach = 60;
+          for (let i = nearest[0] - 4; i <= nearest[0] + 4; i++) {
+            for (let j = nearest[1] - 4; j <= nearest[1] + 4; j++) {
+              const distance = Math.hypot((i + .5) * 40 - wx, (j + .5) * 40 - wy);
+              const t = Math.max(0, Math.min(1, (reach - distance) / (reach * .85)));
+              const value = t * t * (3 - 2 * t) * spot.power;
+              const key = `${i},${j}`;
+              if (value > (projectsGrid.lit.get(key) || 0)) projectsGrid.lit.set(key, value);
+            }
+          }
+        }
+
+        function animateProjectsGrid(now) {
+          projectsGrid.frame = 0;
+          if (!projectsGrid.visible) return;
+          const dt = projectsGrid.last ? Math.min(.05, (now - projectsGrid.last) / 1000) : 1 / 60;
+          projectsGrid.last = now;
+          if (!reducedMotion) {
+            projectsGrid.time += dt;
+            projectsGrid.offsetX = (projectsGrid.offsetX - Math.SQRT1_2 * 30 * dt + 40) % 40;
+            projectsGrid.offsetY = (projectsGrid.offsetY + Math.SQRT1_2 * 30 * dt + 40) % 40;
+            illuminateProjectsGrid(dt);
+            projectsGrid.cascades = projectsGrid.cascades.filter(item => projectsGrid.time - item.time < 1.3);
+          }
+          drawProjectsGrid();
+          if (!reducedMotion) projectsGrid.frame = requestAnimationFrame(animateProjectsGrid);
+          else projectsGrid.last = 0;
+        }
+
+        function startProjectsGrid(section = projectsSection) {
+          projectsGrid.visibleSections.add(section);
+          projectsGrid.visible = true;
+          if (!projectsGrid.started) {
+            projectsGrid.started = true;
+            projectsGrid.startedAt = projectsGrid.time;
+          }
+          if (!projectsGrid.frame) projectsGrid.frame = requestAnimationFrame(animateProjectsGrid);
+        }
+
+        function stopProjectsGrid(section = projectsSection) {
+          projectsGrid.visibleSections.delete(section);
+          projectsGrid.visible = projectsGrid.visibleSections.size > 0;
+          if (projectsGrid.visible) return;
+          projectsGrid.last = 0;
+          if (projectsGrid.frame) cancelAnimationFrame(projectsGrid.frame);
+          projectsGrid.frame = 0;
+          projectsGrid.pointer = null;
+          if (reducedMotion) drawProjectsGrid();
+        }
+
+        gridSections.forEach(section => {
+          section.addEventListener('pointermove', event => {
+            if (event.pointerType !== 'mouse' || reducedMotion) return;
+            const rect = section.getBoundingClientRect();
+            const point = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+            if (!projectsGrid.pointer) {
+              projectsGrid.spot.x = point.x;
+              projectsGrid.spot.y = point.y;
+              projectsGrid.spot.vx = 0;
+              projectsGrid.spot.vy = 0;
+            }
+            projectsGrid.pointer = point;
+          });
+          section.addEventListener('pointerleave', () => { projectsGrid.pointer = null; });
+          section.addEventListener('pointerdown', event => {
+            if (reducedMotion) return;
+            const rect = section.getBoundingClientRect();
+            projectsGrid.cascades.push({
+              x: event.clientX - rect.left + projectsGrid.offsetX,
+              y: event.clientY - rect.top + projectsGrid.offsetY,
+              time: projectsGrid.time
+            });
+            if (projectsGrid.cascades.length > 6) projectsGrid.cascades.shift();
+          });
+          new ResizeObserver(resizeProjectsGrid).observe(section);
+        });
+        resizeProjectsGrid();
+
+        function measureProjectTitleShine() {
+          const rect = projectTitleFrame.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          projectTitleShine.width = Math.max(1, Math.round(rect.width * dpr));
+          projectTitleShine.height = Math.max(1, Math.round(rect.height * dpr));
+          projectTitleShineContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+          drawProjectTitleShine();
+        }
+
+        function projectTitlePerimeter(t, width, height, radius) {
+          const straightX = width - 2 * radius;
+          const straightY = height - 2 * radius;
+          const corner = Math.PI * radius / 2;
+          const perimeter = 2 * straightX + 2 * straightY + 4 * corner;
+          let distance = ((t % 1) + 1) % 1 * perimeter;
+          if (distance < straightX) return [radius + distance, 0];
+          distance -= straightX;
+          if (distance < corner) {
+            const angle = -Math.PI / 2 + distance / radius;
+            return [width - radius + Math.cos(angle) * radius, radius + Math.sin(angle) * radius];
+          }
+          distance -= corner;
+          if (distance < straightY) return [width, radius + distance];
+          distance -= straightY;
+          if (distance < corner) {
+            const angle = distance / radius;
+            return [width - radius + Math.cos(angle) * radius, height - radius + Math.sin(angle) * radius];
+          }
+          distance -= corner;
+          if (distance < straightX) return [width - radius - distance, height];
+          distance -= straightX;
+          if (distance < corner) {
+            const angle = Math.PI / 2 + distance / radius;
+            return [radius + Math.cos(angle) * radius, height - radius + Math.sin(angle) * radius];
+          }
+          distance -= corner;
+          if (distance < straightY) return [0, height - radius - distance];
+          distance -= straightY;
+          const angle = Math.PI + distance / radius;
+          return [radius + Math.cos(angle) * radius, radius + Math.sin(angle) * radius];
+        }
+
+        const aboutTagShines = [...document.querySelectorAll('.about-intro-tag-frame')].map((frame, index) => {
+          const canvas = frame.querySelector('.about-intro-tag-shine');
+          return {
+            frame,
+            canvas,
+            context: canvas.getContext('2d'),
+            spot: index / 3,
+            width: 0,
+            height: 0
+          };
+        });
+        let aboutTagShineVisible = false;
+        let aboutTagShineFrame = 0;
+        let aboutTagShineTime = 0;
+
+        function drawAboutTagShine(state) {
+          const { context, frame, width, height } = state;
+          if (!context || !width || !height) return;
+          context.clearRect(0, 0, width, height);
+          const padding = 1.25;
+          const radius = Math.max(1, height / 2 - padding);
+          const innerWidth = width - padding * 2;
+          const innerHeight = height - padding * 2;
+          const perimeter = 2 * (innerWidth - 2 * radius) +
+            2 * (innerHeight - 2 * radius) + 2 * Math.PI * radius;
+          const steps = Math.ceil(perimeter / 2);
+          const windowSize = 0.025;
+          const fade = 0.082;
+          const lobe = position => {
+            const gap = Math.abs((((position - state.spot + 0.5) % 1) + 1) % 1 - 0.5);
+            const t = Math.max(0, Math.min(1, (gap - windowSize) / fade));
+            return 1 - t * t * (3 - 2 * t);
+          };
+
+          context.save();
+          context.lineWidth = 1.25;
+          context.lineCap = 'round';
+          context.shadowColor = 'rgba(255,255,255,.9)';
+          context.shadowBlur = 5;
+          for (let step = 0; step < steps; step++) {
+            const t0 = step / steps;
+            const t1 = (step + 1) / steps;
+            const middle = (t0 + t1) / 2;
+            const light = Math.min(0.96, (lobe(middle) + lobe((middle + 0.5) % 1) * 0.45) * 0.62);
+            if (light < 0.012) continue;
+            const [x0, y0] = projectTitlePerimeter(t0, innerWidth, innerHeight, radius);
+            const [x1, y1] = projectTitlePerimeter(t1, innerWidth, innerHeight, radius);
+            context.strokeStyle = `rgba(255,255,255,${light})`;
+            context.beginPath();
+            context.moveTo(x0 + padding, y0 + padding);
+            context.lineTo(x1 + padding, y1 + padding);
+            context.stroke();
+          }
+          context.restore();
+        }
+
+        function measureAboutTagShine(state) {
+          const rect = state.frame.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          state.width = rect.width;
+          state.height = rect.height;
+          state.canvas.width = Math.max(1, Math.round(rect.width * dpr));
+          state.canvas.height = Math.max(1, Math.round(rect.height * dpr));
+          state.context.setTransform(dpr, 0, 0, dpr, 0, 0);
+          drawAboutTagShine(state);
+        }
+
+        function animateAboutTagShine(now) {
+          aboutTagShineFrame = 0;
+          if (!aboutTagShineVisible) return;
+          const dt = aboutTagShineTime ? Math.min(0.05, (now - aboutTagShineTime) / 1000) : 0;
+          aboutTagShineTime = now;
+          aboutTagShines.forEach(state => {
+            state.spot = (state.spot + dt * 0.22) % 1;
+            drawAboutTagShine(state);
+          });
+          aboutTagShineFrame = requestAnimationFrame(animateAboutTagShine);
+        }
+
+        function startAboutTagShine() {
+          if (reducedMotion || aboutTagShineFrame) return;
+          aboutTagShineVisible = true;
+          aboutTagShineTime = 0;
+          aboutTagShineFrame = requestAnimationFrame(animateAboutTagShine);
+        }
+
+        function stopAboutTagShine() {
+          aboutTagShineVisible = false;
+          aboutTagShineTime = 0;
+          if (aboutTagShineFrame) cancelAnimationFrame(aboutTagShineFrame);
+          aboutTagShineFrame = 0;
+          aboutTagShines.forEach(({ context, canvas }) => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+          });
+        }
+
+        aboutTagShines.forEach(state => {
+          measureAboutTagShine(state);
+          new ResizeObserver(() => measureAboutTagShine(state)).observe(state.frame);
+        });
+
+        function drawProjectTitleShine() {
+          const context = projectTitleShineContext;
+          const width = projectTitleFrame.clientWidth;
+          const height = projectTitleFrame.clientHeight;
+          if (!context || !width || !height) return;
+          context.clearRect(0, 0, width, height);
+          const radius = Math.min(height / 2, 28);
+          const halfX = width / 2;
+          const halfY = height / 2;
+          const padding = 1.25;
+          const innerHalfX = halfX - padding;
+          const innerHalfY = halfY - padding;
+          const innerRadius = Math.max(1, radius - padding);
+          const perimeter = 2 * (width - 2 * padding - 2 * innerRadius) +
+            2 * (height - 2 * padding - 2 * innerRadius) + 2 * Math.PI * innerRadius;
+          const steps = Math.ceil(perimeter / 2);
+          const intensity = projectShineNear ? 0.9 : 0.62;
+          const windowSize = 0.025;
+          const fade = 0.082;
+          const lobe = (position, center) => {
+            const gap = Math.abs((((position - center + 0.5) % 1) + 1) % 1 - 0.5);
+            const t = Math.max(0, Math.min(1, (gap - windowSize) / fade));
+            return 1 - t * t * (3 - 2 * t);
+          };
+
+          context.save();
+          context.lineWidth = 1.25;
+          context.lineCap = 'round';
+          context.shadowColor = 'rgba(255,255,255,.9)';
+          context.shadowBlur = projectShineNear ? 7 : 5;
+          for (let step = 0; step < steps; step++) {
+            const t0 = step / steps;
+            const t1 = (step + 1) / steps;
+            const key = lobe((t0 + t1) / 2, projectShineSpot);
+            const back = lobe((t0 + t1) / 2, projectShineSpot + 0.5) * 0.45;
+            const light = Math.min(0.96, (key + back) * intensity);
+            if (light < 0.012) continue;
+            const [x0, y0] = projectTitlePerimeter(t0, innerHalfX * 2, innerHalfY * 2, innerRadius);
+            const [x1, y1] = projectTitlePerimeter(t1, innerHalfX * 2, innerHalfY * 2, innerRadius);
+            context.strokeStyle = `rgba(255,255,255,${light})`;
+            context.beginPath();
+            context.moveTo(x0 + padding, y0 + padding);
+            context.lineTo(x1 + padding, y1 + padding);
+            context.stroke();
+          }
+          context.restore();
+        }
+
+        function animateProjectTitleShine(now) {
+          projectShineFrame = 0;
+          if (!projectShineVisible) return;
+          const dt = projectShineTime ? Math.min(0.05, (now - projectShineTime) / 1000) : 0;
+          projectShineTime = now;
+          if (projectShinePointer.known) {
+            const rect = projectTitleFrame.getBoundingClientRect();
+            const pointerX = projectShinePointer.x - rect.left;
+            const pointerY = projectShinePointer.y - rect.top;
+            let best = Infinity;
+            const samples = 240;
+            for (let i = 0; i < samples; i++) {
+              const [px, py] = projectTitlePerimeter(i / samples, rect.width, rect.height, Math.min(rect.height / 2, 28));
+              const distance = Math.hypot(px - pointerX, py - pointerY);
+              if (distance < best) {
+                best = distance;
+                projectShineTarget = i / samples;
+              }
+            }
+            projectShineNear = best < 250;
+            if (!projectShineNear) {
+              projectShineSpot = (projectShineSpot + dt * 0.22) % 1;
+              drawProjectTitleShine();
+              projectShineFrame = requestAnimationFrame(animateProjectTitleShine);
+              return;
+            }
+            let difference = projectShineTarget - projectShineSpot;
+            difference -= Math.round(difference);
+            projectShineSpot = (projectShineSpot + difference * (1 - Math.exp(-dt * 8)) + 1) % 1;
+          } else {
+            projectShineNear = false;
+            projectShineSpot = (projectShineSpot + dt * 0.22) % 1;
+          }
+          drawProjectTitleShine();
+          projectShineFrame = requestAnimationFrame(animateProjectTitleShine);
+        }
+
+        let projectShineTarget = 0;
+        function startProjectTitleShine() {
+          if (reducedMotion || projectShineFrame) return;
+          projectShineVisible = true;
+          projectShineTime = 0;
+          projectShineFrame = requestAnimationFrame(animateProjectTitleShine);
+        }
+
+        function stopProjectTitleShine() {
+          projectShineVisible = false;
+          projectShineNear = false;
+          if (projectShineFrame) cancelAnimationFrame(projectShineFrame);
+          projectShineFrame = 0;
+          drawProjectTitleShine();
+        }
+
+        new ResizeObserver(measureProjectTitleShine).observe(projectTitleFrame);
+        measureProjectTitleShine();
+
+        function setProjectCard(index) {
+          projectCards.forEach((card, cardIndex) => {
+            const active = cardIndex === index;
+            card.classList.toggle('is-active', active);
+            card.setAttribute('aria-pressed', String(active));
+            card.style.zIndex = String(10 - Math.abs(cardIndex - defaultProjectIndex));
+            const image = card.querySelector('img');
+            const source = active ? card.dataset.expanded : card.dataset.small;
+            if (image.getAttribute('src') !== source) image.setAttribute('src', source);
+            const offset = (cardIndex - defaultProjectIndex) * Math.min(160, window.innerWidth * 0.112);
+            card.style.setProperty('--offset', `${offset}px`);
+            card.style.setProperty('--arc-drop', `${Math.pow(cardIndex - defaultProjectIndex, 2) * 10}px`);
+            card.style.setProperty('--tilt', `${projectCardTilts[cardIndex] ?? 0}deg`);
+            card.style.setProperty('--deal-index', String(Math.abs(cardIndex - defaultProjectIndex)));
+          });
+
+          const activeCard = projectCards[index];
+          projectKindImage.src = activeCard.dataset.kindImage;
+          projectKindImage.alt = activeCard.dataset.title;
+          projectTitleLabel.src = activeCard.dataset.titleImage;
+          projectTitleLabel.alt = activeCard.dataset.title;
+          projectDecoration.src = activeCard.dataset.decoration;
+          projectDecoration.alt = '';
+          projectDecoration.classList.toggle('is-compact', index === 3 || index === 6);
+          const description = activeCard.dataset.description;
+          const emphasis = activeCard.dataset.emphasis;
+          const emphasisIndex = description.indexOf(emphasis);
+          projectDescription.replaceChildren();
+          if (emphasisIndex < 0) {
+            projectDescription.textContent = description;
+          } else {
+            projectDescription.append(document.createTextNode(description.slice(0, emphasisIndex)));
+            const strong = document.createElement('strong');
+            strong.textContent = emphasis;
+            projectDescription.append(strong, document.createTextNode(description.slice(emphasisIndex + emphasis.length)));
+          }
+        }
+
+        let projectDetailReturnFocus = null;
+        let projectDetailCloseTimer = 0;
+
+        function setProjectDetailChapterActive(index) {
+          projectSidebarItems.forEach((item, itemIndex) => {
+            item.setAttribute('aria-current', String(itemIndex === index));
+          });
+        }
+
+        function syncProjectDetailChapter() {
+          if (!projectSidebarItems.length) return;
+          const maxScroll = Math.max(1, projectDetailScroll.scrollHeight - projectDetailScroll.clientHeight);
+          const progress = projectDetailScroll.scrollTop / maxScroll;
+          const projectIndex = projectCards.findIndex(card => `${card.dataset.title}项目详情` === projectDetailImage.alt);
+          const chapters = projectDetailChapters[projectIndex] || [];
+          let activeIndex = 0;
+          chapters.forEach(([label, position], index) => {
+            const nextPosition = chapters[index + 1]?.[1] ?? 1;
+            if (progress >= (position + nextPosition) / 2) activeIndex = index;
+          });
+          setProjectDetailChapterActive(activeIndex);
+        }
+
+        function renderProjectDetailSidebar(projectIndex) {
+          const chapters = projectDetailChapters[projectIndex] || [];
+          projectSidebarList.replaceChildren();
+          projectSidebarBubble.textContent = '';
+          projectSidebarBubble.classList.remove('is-visible');
+          projectSidebarLabels = chapters.map(([label]) => label);
+          projectSidebarItems = chapters.map(([label, position], index) => {
+            const item = document.createElement('li');
+            item.className = 'project-detail-sidebar-item';
+            const button = document.createElement('button');
+            button.className = 'project-detail-sidebar-button';
+            button.type = 'button';
+            button.dataset.index = String(index);
+            button.setAttribute('aria-label', label);
+            button.setAttribute('aria-current', String(index === 0));
+            const marker = document.createElement('span');
+            marker.className = 'project-detail-sidebar-marker';
+            marker.setAttribute('aria-hidden', 'true');
+            button.append(marker);
+            button.addEventListener('click', () => {
+              const imageHeight = projectDetailImage.naturalHeight
+                ? projectDetailImage.naturalHeight * (projectDetailImage.clientWidth / projectDetailImage.naturalWidth)
+                : projectDetailScroll.scrollHeight;
+              const target = Math.max(0, Math.min(
+                projectDetailScroll.scrollHeight - projectDetailScroll.clientHeight,
+                imageHeight * position - 56
+              ));
+              projectDetailScroll.scrollTo({ top: target, behavior: reducedMotion ? 'auto' : 'smooth' });
+              setProjectDetailChapterActive(index);
+            });
+            item.append(button);
+            projectSidebarList.append(item);
+            return button;
+          });
+          projectSidebarTargets = chapters.map(() => 0);
+          projectSidebarCurrent = chapters.map(() => 0);
+          setProjectDetailChapterActive(0);
+        }
+
+        function runProjectSidebarFrame(now) {
+          projectSidebarFrame = 0;
+          const dt = Math.min((now - projectSidebarLastFrame) / 1000, .05);
+          projectSidebarLastFrame = now;
+          const smoothing = 1 - Math.exp(-dt / .1);
+          let moving = false;
+          projectSidebarItems.forEach((item, index) => {
+            const target = projectSidebarTargets[index] || 0;
+            const current = projectSidebarCurrent[index] || 0;
+            const next = current + (target - current) * smoothing;
+            const value = Math.abs(target - next) < .0015 ? target : next;
+            projectSidebarCurrent[index] = value;
+            item.style.setProperty('--effect', value.toFixed(4));
+            if (value !== target) moving = true;
+          });
+          if (moving) projectSidebarFrame = requestAnimationFrame(runProjectSidebarFrame);
+        }
+
+        function startProjectSidebarFrame() {
+          if (projectSidebarFrame) cancelAnimationFrame(projectSidebarFrame);
+          projectSidebarLastFrame = performance.now();
+          projectSidebarFrame = requestAnimationFrame(runProjectSidebarFrame);
+        }
+
+        projectSidebar.addEventListener('pointermove', event => {
+          const rect = projectSidebarList.getBoundingClientRect();
+          const pointerY = event.clientY - rect.top;
+          projectSidebarItems.forEach((item, index) => {
+            const center = item.getBoundingClientRect().top - rect.top + item.offsetHeight / 2;
+            const distance = Math.abs(pointerY - center);
+            projectSidebarTargets[index] = Math.max(0, 1 - distance / 92);
+          });
+          const hoveredButton = event.target.closest('.project-detail-sidebar-button');
+          if (hoveredButton && projectSidebarList.contains(hoveredButton)) {
+            const index = Number(hoveredButton.dataset.index);
+            const buttonRect = hoveredButton.getBoundingClientRect();
+            projectSidebarBubble.textContent = projectSidebarLabels[index] || '';
+            projectSidebarBubble.style.top = `${buttonRect.top + buttonRect.height / 2 - projectSidebar.getBoundingClientRect().top}px`;
+            projectSidebarBubble.classList.add('is-visible');
+          } else {
+            projectSidebarBubble.classList.remove('is-visible');
+          }
+          startProjectSidebarFrame();
+        });
+        projectSidebar.addEventListener('pointerleave', () => {
+          projectSidebarTargets = projectSidebarTargets.map(() => 0);
+          projectSidebarBubble.classList.remove('is-visible');
+          startProjectSidebarFrame();
+        });
+        projectSidebar.addEventListener('focusin', event => {
+          const button = event.target.closest('.project-detail-sidebar-button');
+          if (!button) return;
+          const index = Number(button.dataset.index);
+          projectSidebarBubble.textContent = projectSidebarLabels[index] || '';
+          const rect = button.getBoundingClientRect();
+          projectSidebarBubble.style.top = `${rect.top + rect.height / 2 - projectSidebar.getBoundingClientRect().top}px`;
+          projectSidebarBubble.classList.add('is-visible');
+        });
+        projectSidebar.addEventListener('focusout', event => {
+          if (!projectSidebar.contains(event.relatedTarget)) projectSidebarBubble.classList.remove('is-visible');
+        });
+        projectDetailScroll.addEventListener('scroll', syncProjectDetailChapter, { passive: true });
+
+        function openProjectDetail(index) {
+          const card = projectCards[index];
+          const source = projectDetailImages[index];
+          if (!card || !source) return;
+          projectDetailReturnFocus = card;
+          window.clearTimeout(projectDetailCloseTimer);
+          projectDetailImage.src = source;
+          projectDetailImage.alt = `${card.dataset.title}项目详情`;
+          renderProjectDetailSidebar(index);
+          projectDetailScroll.scrollTop = 0;
+          projectsSection.classList.remove('is-dealing');
+          projectDetailDrawer.classList.remove('is-closing');
+          projectDetailDrawer.classList.add('is-open');
+          projectDetailDrawer.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('project-detail-open');
+          window.requestAnimationFrame(() => projectDetailDrawer.querySelector('.project-detail-close').focus({ preventScroll: true }));
+        }
+
+        function closeProjectDetail() {
+          if (!projectDetailDrawer.classList.contains('is-open')) return;
+          projectDetailDrawer.classList.remove('is-open');
+          projectDetailDrawer.classList.add('is-closing');
+          projectDetailDrawer.setAttribute('aria-hidden', 'true');
+          projectDetailCloseTimer = window.setTimeout(() => {
+            if (!projectDetailDrawer.classList.contains('is-open')) {
+              projectDetailImage.removeAttribute('src');
+              projectDetailDrawer.classList.remove('is-closing');
+              document.body.classList.remove('project-detail-open');
+              projectDetailReturnFocus?.focus({ preventScroll: true });
+            }
+          }, reducedMotion ? 0 : 450);
+        }
+
+        projectDetailDrawer.querySelectorAll('[data-close-project-detail]').forEach(control => {
+          control.addEventListener('click', closeProjectDetail);
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape') closeProjectDetail();
+          if ((projectDetailDrawer.classList.contains('is-open') || projectDetailDrawer.classList.contains('is-closing'))
+            && [' ', 'PageDown', 'PageUp', 'Home', 'End', 'ArrowDown', 'ArrowUp'].includes(event.key)
+            && !event.target.closest('.project-detail-scroll')) event.preventDefault();
+        });
+        document.querySelectorAll('.site-nav a').forEach(link => {
+          link.addEventListener('click', closeProjectDetail);
+        });
+
+        projectCards.forEach((card, index) => {
+          card.addEventListener('click', () => openProjectDetail(index));
+        });
+        projectsSection.addEventListener('pointermove', (event) => {
+          if (event.pointerType !== 'mouse') return;
+          projectShinePointer.x = event.clientX;
+          projectShinePointer.y = event.clientY;
+          projectShinePointer.known = true;
+          const card = event.target.closest('.project-card');
+          setProjectCard(card ? projectCards.indexOf(card) : defaultProjectIndex);
+        });
+        projectsSection.addEventListener('pointerleave', () => {
+          projectShinePointer.known = false;
+          projectShineNear = false;
+          setProjectCard(defaultProjectIndex);
+        });
+        window.addEventListener('resize', () => {
+          const activeIndex = Math.max(0, projectCards.findIndex(card => card.classList.contains('is-active')));
+          projectCards.forEach((card, index) => {
+            const offset = (index - defaultProjectIndex) * Math.min(160, window.innerWidth * 0.112);
+            card.style.setProperty('--offset', `${offset}px`);
+            card.style.setProperty('--arc-drop', `${Math.pow(index - defaultProjectIndex, 2) * 10}px`);
+          });
+          if (activeIndex >= 0) setProjectCard(activeIndex);
+        });
+        setProjectCard(defaultProjectIndex);
+        window.addEventListener('wheel', (event) => {
+          if (projectDetailDrawer.classList.contains('is-open') || projectDetailDrawer.classList.contains('is-closing')) {
+            if (!event.target.closest('.project-detail-scroll')) event.preventDefault();
+            return;
+          }
+          if (scrollFrame) {
+            event.preventDefault();
+            return;
+          }
+          const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
+          const achievementsTop = getAchievementsTop();
+          const projectsTop = projectsSection.getBoundingClientRect().top + window.scrollY;
+          const aiWorkflowTop = aiWorkflowSection.getBoundingClientRect().top + window.scrollY;
+          if (event.deltaY > 0 && window.scrollY < aboutTop - 2) {
+            event.preventDefault();
+            scrollToSection(aboutSection);
+          } else if (event.deltaY > 0 && window.scrollY >= aboutTop - 2 && window.scrollY < achievementsTop - 2) {
+            event.preventDefault();
+            scrollToAchievements();
+          } else if (event.deltaY > 0 && window.scrollY >= achievementsTop - 2 && window.scrollY < projectsTop - 2) {
+            event.preventDefault();
+            scrollToSection(projectsSection);
+          } else if (event.deltaY > 0 && window.scrollY >= projectsTop - 2 && window.scrollY < aiWorkflowTop - 2) {
+            event.preventDefault();
+            scrollToSection(aiWorkflowSection);
+          } else if (event.deltaY < 0 && window.scrollY >= aiWorkflowTop - 2 && window.scrollY <= aiWorkflowTop + 24) {
+            event.preventDefault();
+            scrollToSection(projectsSection);
+          } else if (event.deltaY < 0 && window.scrollY >= projectsTop - 2 && window.scrollY <= projectsTop + 24) {
+            event.preventDefault();
+            scrollToAchievements();
+          } else if (event.deltaY < 0 && window.scrollY >= achievementsTop - 2 && window.scrollY <= achievementsTop + 24) {
+            event.preventDefault();
+            scrollToSection(aboutSection);
+          } else if (event.deltaY < 0 && window.scrollY > 0 && window.scrollY <= aboutTop + 24) {
+            event.preventDefault();
+            scrollToSection(homeSection);
+          }
+        }, { passive: false });
+        document.addEventListener('touchmove', event => {
+          if ((projectDetailDrawer.classList.contains('is-open') || projectDetailDrawer.classList.contains('is-closing'))
+            && !event.target.closest('.project-detail-scroll')) event.preventDefault();
+        }, { passive: false });
+
+        const cover = document.querySelector('main');
+        const image = document.querySelector('.cover');
+        const backgroundCanvas = document.querySelector('.cover-background');
+        const canvas = document.querySelector('.lens');
+        document.body.appendChild(canvas);
+        const characterCanvas = document.querySelector('.character-motion');
+        document.body.appendChild(characterCanvas);
+        const ctx = canvas.getContext('2d', { alpha: true });
+        const characterContext = characterCanvas.getContext('2d', { alpha: true });
+        const backgroundContext = backgroundCanvas.getContext('2d', { alpha: true });
+        const hoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+        if (!ctx || !characterContext || !backgroundContext) return;
+
+        const W = 1440;
+        const H = 892;
+        const R = W * 0.175;
+        const defaultX = 1088;
+        const defaultY = 362;
+        const foreground = document.createElement('canvas');
+        foreground.width = W;
+        foreground.height = H;
+        const fg = foreground.getContext('2d');
+        const characterMask = document.createElement('canvas');
+        characterMask.width = W;
+        characterMask.height = H;
+        const characterMaskContext = characterMask.getContext('2d');
+        const background = document.createElement('canvas');
+        background.width = W;
+        background.height = H;
+        const bg = background.getContext('2d');
+        const lensSize = 384;
+        const refracted = document.createElement('canvas');
+        refracted.width = lensSize;
+        refracted.height = lensSize;
+        const refractedContext = refracted.getContext('2d');
+        const refractedPixels = refractedContext.createImageData(lensSize, lensSize);
+        let sourcePixels;
+        const navSource = document.createElement('canvas');
+        navSource.width = W;
+        navSource.height = H;
+        const navContext = navSource.getContext('2d', { willReadFrequently: true });
+        const logoHead = new Path2D('M25.873 2.416C36.989 2.416 46 11.427 46 22.543H5.746C5.746 11.427 14.757 2.416 25.873 2.416Z');
+        const logoEar = new Path2D('M44.566 10.219c-2.198 2.654-6.131 3.024-8.785.826-2.654-2.197-3.024-6.131-.827-8.785 2.198-2.654 6.132-3.024 8.786-.826 2.654 2.198 3.024 6.131.826 8.785Z');
+        const logoPlus = new Path2D('M10.007 3.157h3.22v2.839h-3.22v3.285H7.167V5.996H4.011V3.157h3.156V0h2.84v3.157Z');
+        let pixelSamplingAvailable = false;
+        const person = new Image();
+        person.src = 'assets/person-79e325.png';
+        const video = document.createElement('video');
+        video.muted = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.loop = true;
+        video.preload = 'auto';
+        const characterFrame = document.createElement('canvas');
+        characterFrame.width = W;
+        characterFrame.height = H;
+        const characterFrameContext = characterFrame.getContext('2d');
+        let motionReady = false;
+        let motionMode = 'idle';
+        let motionFrame = 0;
+
+        let ready = false;
+        let visible = false;
+        let frame = 0;
+        let currentX = defaultX;
+        let currentY = defaultY;
+        let targetX = currentX;
+        let targetY = currentY;
+
+        function rebuildCharacterMask() {
+          const x = 520.57;
+          const y = 216.51;
+          const width = 420.26;
+          const height = 458.02;
+          const centerX = x + width / 2;
+          const centerY = y + height / 2;
+          const expansion = 1.006;
+
+          characterMaskContext.clearRect(0, 0, W, H);
+          characterMaskContext.drawImage(
+            person,
+            centerX - width * expansion / 2,
+            centerY - height * expansion / 2,
+            width * expansion,
+            height * expansion
+          );
+          characterMaskContext.drawImage(person, x, y, width, height);
+        }
+
+        function rebuildForeground() {
+          if (!image.complete || !image.naturalWidth || !person.complete || !person.naturalWidth) return;
+          rebuildCharacterMask();
+          bg.clearRect(0, 0, W, H);
+          bg.fillStyle = '#0f0f11';
+          bg.fillRect(0, 0, W, H);
+          bg.drawImage(image, 0, 82, W, 810);
+          bg.globalCompositeOperation = 'destination-out';
+          bg.drawImage(characterMask, 0, 0);
+          bg.globalCompositeOperation = 'destination-over';
+          bg.fillStyle = '#0f0f11';
+          bg.fillRect(0, 0, W, H);
+          bg.globalCompositeOperation = 'source-over';
+
+          fg.clearRect(0, 0, W, H);
+          if (!motionReady) {
+            fg.drawImage(image, 0, 82, W, 810);
+            fg.globalCompositeOperation = 'destination-in';
+            fg.drawImage(person, 520.57, 216.51, 420.26, 458.02);
+            fg.globalCompositeOperation = 'source-over';
+          }
+
+          // Keep the icon groups at their original size above the enlarged background.
+          for (const [x, y, w, h] of [
+            [1054.15, 555.64, 214.15, 88.82],
+            [927.2, 683.95, 297.44, 89.98]
+          ]) {
+            bg.fillStyle = '#0f0f11';
+            bg.fillRect(x, y, w, h);
+            fg.save();
+            fg.beginPath();
+            fg.roundRect(x, y, w, h, h / 2);
+            fg.clip();
+            fg.drawImage(image, 0, 82, W, 810);
+            fg.restore();
+          }
+          try {
+            sourcePixels = bg.getImageData(0, 0, W, H).data;
+            pixelSamplingAvailable = true;
+          } catch (_) {
+            // file:// pages taint canvases that draw local image assets.
+            pixelSamplingAvailable = false;
+          }
+          backgroundContext.clearRect(0, 0, W, H);
+          backgroundContext.drawImage(background, 0, 0, W, H);
+          backgroundCanvas.classList.add('is-ready');
+          image.classList.add('is-ready');
+          ready = true;
+        }
+
+        function resize() {
+          const rect = cover.getBoundingClientRect();
+          const canvasPosition = {
+            position: 'absolute',
+            left: `${rect.left + window.scrollX}px`,
+            top: `${rect.top + window.scrollY}px`,
+            right: 'auto',
+            bottom: 'auto',
+            width: `${rect.width}px`,
+            height: `${rect.height}px`
+          };
+          Object.assign(canvas.style, canvasPosition);
+          Object.assign(characterCanvas.style, canvasPosition);
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.round(rect.width * dpr);
+          canvas.height = Math.round(rect.height * dpr);
+          ctx.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
+          characterCanvas.width = canvas.width;
+          characterCanvas.height = canvas.height;
+          characterContext.setTransform(characterCanvas.width / W, 0, 0, characterCanvas.height / H, 0, 0);
+          backgroundCanvas.width = canvas.width;
+          backgroundCanvas.height = canvas.height;
+          backgroundContext.setTransform(backgroundCanvas.width / W, 0, 0, backgroundCanvas.height / H, 0, 0);
+          if (ready) backgroundContext.drawImage(background, 0, 0, W, H);
+          if (visible && ready) draw();
+          if (motionReady) drawCharacter();
+        }
+
+        function drawCharacter() {
+          if (!motionReady || video.readyState < 2) return;
+          characterFrameContext.clearRect(0, 0, W, H);
+          characterFrameContext.drawImage(video, 0, 82, W, 810);
+          characterFrameContext.globalCompositeOperation = 'destination-in';
+          characterFrameContext.drawImage(characterMask, 0, 0);
+          characterFrameContext.globalCompositeOperation = 'source-over';
+          characterContext.clearRect(0, 0, W, H);
+          characterContext.drawImage(characterFrame, 0, 0);
+        }
+
+        function animateCharacter() {
+          motionFrame = 0;
+          if (!motionReady) return;
+          const time = video.currentTime;
+          if (motionMode === 'drawing' && time >= 4.5) video.currentTime = 2.25;
+          if (motionMode === 'looking' && time >= 5.95) video.currentTime = 0;
+          if (motionMode === 'looking' && time >= 1.15 && time < 4.5) video.currentTime = 5.25;
+          drawCharacter();
+          motionFrame = requestAnimationFrame(animateCharacter);
+        }
+
+        function setMotionMode(mode) {
+          if (motionMode === mode) return;
+          motionMode = mode;
+          if (!motionReady) return;
+          if (mode === 'idle') video.currentTime = 0;
+          else if (mode === 'looking') video.currentTime = 4.55;
+          else video.currentTime = 1.15;
+          video.play().catch(() => {});
+        }
+
+        async function loadMotion() {
+          try {
+            video.src = 'assets/character-motion.mp4';
+            await new Promise((resolve, reject) => {
+              video.addEventListener('loadedmetadata', resolve, { once: true });
+              video.addEventListener('error', reject, { once: true });
+            });
+            const startTime = motionMode === 'idle' ? 0 : motionMode === 'drawing' ? 2.25 : 5.25;
+            if (Math.abs(video.currentTime - startTime) > 0.01) {
+              const seeked = new Promise(resolve => video.addEventListener('seeked', resolve, { once: true }));
+              video.currentTime = startTime;
+              await seeked;
+            }
+            if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+              await new Promise((resolve, reject) => {
+                video.addEventListener('loadeddata', resolve, { once: true });
+                video.addEventListener('error', reject, { once: true });
+              });
+            }
+            motionReady = true;
+            rebuildForeground();
+            drawCharacter();
+            draw();
+            characterCanvas.classList.add('is-ready');
+            video.play().catch(() => {});
+            motionFrame = requestAnimationFrame(animateCharacter);
+          } catch (_) {
+            // The original cover remains visible if the motion asset cannot load.
+          }
+        }
+
+        function sample(x, y, channel) {
+          const px = Math.max(0, Math.min(W - 2, x));
+          const py = Math.max(0, Math.min(H - 2, y));
+          const ix = px | 0;
+          const iy = py | 0;
+          const fx = px - ix;
+          const fy = py - iy;
+          const offset = (iy * W + ix) * 4 + channel;
+          const top = sourcePixels[offset] * (1 - fx) + sourcePixels[offset + 4] * fx;
+          const bottom = sourcePixels[offset + W * 4] * (1 - fx) + sourcePixels[offset + W * 4 + 4] * fx;
+          return top * (1 - fy) + bottom * fy;
+        }
+
+        function renderNavForLens() {
+          navContext.clearRect(0, 0, W, H);
+          const coverRect = cover.getBoundingClientRect();
+          const scaleX = W / coverRect.width;
+          const scaleY = H / coverRect.height;
+          const toCanvasRect = (element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+              x: (rect.left - coverRect.left) * scaleX,
+              y: (rect.top - coverRect.top) * scaleY,
+              width: rect.width * scaleX,
+              height: rect.height * scaleY
+            };
+          };
+          const mark = document.querySelector('.brand-mark');
+          const markRect = toCanvasRect(mark);
+          const progress = brandMark.classList.contains('is-playing')
+            ? ((performance.now() - brandAnimationStart) % 5000) / 5000 : 0;
+          const glide = (start, peak, end) => {
+            const ease = value => value * value * (3 - 2 * value);
+            if (progress < start || progress > end) return 0;
+            if (progress < peak) return ease((progress - start) / (peak - start));
+            return ease((end - progress) / (end - peak));
+          };
+          const gaze = (start, arrive, leave, end) => {
+            const ease = value => value * value * (3 - 2 * value);
+            if (progress < start || progress > end) return 0;
+            if (progress < arrive) return ease((progress - start) / (arrive - start));
+            if (progress <= leave) return 1;
+            return ease((end - progress) / (end - leave));
+          };
+          const lookRight = gaze(.10, .16, .36, .44);
+          const lookLeft = gaze(.36, .44, .70, .78);
+          const plusShift = 3 * glide(.12, .37, .55) - 3 * glide(.55, .73, 1);
+          navContext.save();
+          navContext.translate(markRect.x, markRect.y);
+          navContext.scale(markRect.width / 46, markRect.height / 30);
+          navContext.fillStyle = '#fff';
+          navContext.save();
+          navContext.translate(8.6, 4.6);
+          navContext.rotate(plusShift / 3 * Math.PI / 2);
+          navContext.translate(-8.6, -4.6);
+          navContext.fill(logoPlus);
+          navContext.restore();
+          navContext.fill(logoHead);
+          navContext.fill(logoEar);
+          navContext.fillStyle = '#000';
+          navContext.beginPath();
+          navContext.ellipse(17.775 + 12 * lookRight - 5 * lookLeft, 21.15, 2.586, 8.671, 0, 0, Math.PI * 2);
+          navContext.ellipse(33.971 + 4 * lookRight - 13 * lookLeft, 21.15, 2.586, 8.671, 0, 0, Math.PI * 2);
+          navContext.fill();
+          navContext.restore();
+          for (const element of document.querySelectorAll('.brand > span:last-child, .site-nav li a')) {
+            const style = getComputedStyle(element);
+            const rect = toCanvasRect(element);
+            const fontScale = scaleY * rect.width / Math.max(1, element.offsetWidth * scaleX);
+            navContext.font = `${style.fontWeight} ${parseFloat(style.fontSize) * fontScale}px ${style.fontFamily}`;
+            navContext.textBaseline = 'middle';
+            navContext.fillStyle = style.color;
+            navContext.shadowColor = element.matches(':hover') ? 'rgba(255,255,255,.9)' : 'transparent';
+            navContext.shadowBlur = element.matches(':hover') ? 16 * scaleX : 0;
+            navContext.fillText(element.textContent.trim(), rect.x, rect.y + rect.height / 2);
+          }
+          navContext.shadowBlur = 0;
+        }
+
+        function updateBrandLens() {
+          brandLensTimer = 0;
+          if (!brandLensHover || !brandMark.classList.contains('is-playing') || !ready) return;
+          draw();
+          if (brandLensHover && brandMark.classList.contains('is-playing')) {
+            brandLensTimer = window.setTimeout(updateBrandLens, 50);
+          }
+        }
+        document.querySelector('.site-nav').addEventListener('pointerover', () => {
+          if (ready) {
+            draw();
+            window.setTimeout(() => { if (ready) draw(); }, 230);
+          }
+        });
+        document.querySelector('.site-nav').addEventListener('pointerout', () => {
+          if (ready) {
+            draw();
+            window.setTimeout(() => { if (ready) draw(); }, 230);
+          }
+        });
+
+        function drawRefraction() {
+          if (!pixelSamplingAvailable || !sourcePixels) return false;
+          const pixels = refractedPixels.data;
+          const scale = R * 2 / lensSize;
+          const half = lensSize / 2;
+
+          for (let y = 0; y < lensSize; y++) {
+            const dy = (y + 0.5 - half) * scale;
+            for (let x = 0; x < lensSize; x++) {
+              const dx = (x + 0.5 - half) * scale;
+              const distance = Math.hypot(dx, dy);
+              const index = (y * lensSize + x) * 4;
+              if (distance >= R) {
+                pixels[index + 3] = 0;
+                continue;
+              }
+
+              const ratio = distance / R;
+              const edge = Math.max(0, (ratio - 0.63) / 0.37);
+              const bend = edge * edge * (3 - 2 * edge);
+              const angle = Math.atan2(dy, dx);
+              const wave = Math.sin(angle * 9 + ratio * 15) * bend * bend * 2.5;
+              const sourceRadius = distance * (0.87 - 0.055 * bend) + wave;
+              const directionX = distance ? dx / distance : 0;
+              const directionY = distance ? dy / distance : 0;
+              const sourceX = currentX + directionX * sourceRadius;
+              const sourceY = currentY + directionY * sourceRadius;
+              const dispersion = 0.55 + 4.2 * bend * bend;
+              const highlight = 0.035 + 0.06 * (1 - ratio) * (1 - ratio);
+
+              pixels[index] = sample(sourceX + directionX * dispersion, sourceY + directionY * dispersion, 0) * (1 - highlight) + 255 * highlight;
+              pixels[index + 1] = sample(sourceX, sourceY, 1) * (1 - highlight) + 255 * highlight;
+              pixels[index + 2] = sample(sourceX - directionX * dispersion, sourceY - directionY * dispersion, 2) * (1 - highlight) + 255 * highlight;
+              pixels[index + 3] = Math.min(255, (R - distance) * 180);
+            }
+          }
+          refractedContext.putImageData(refractedPixels, 0, 0);
+          return true;
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          renderNavForLens();
+          if (drawRefraction()) {
+            ctx.drawImage(refracted, currentX - R, currentY - R, R * 2, R * 2);
+          } else {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(currentX, currentY, R - 2, 0, Math.PI * 2);
+            ctx.clip();
+            const magnification = 1.17;
+            ctx.translate(currentX * (1 - magnification), currentY * (1 - magnification));
+            ctx.scale(magnification, magnification);
+            ctx.drawImage(backgroundCanvas, 0, 0, W, H);
+            ctx.restore();
+
+          }
+
+          // Keep the fixed navigation legible inside the glass while the cover beneath refracts.
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, R - 4, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(navSource, 0, 0, W, H);
+          ctx.restore();
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, R - 2, 0, Math.PI * 2);
+          ctx.clip();
+          const sheen = ctx.createLinearGradient(currentX - R, currentY - R, currentX + R, currentY + R);
+          sheen.addColorStop(0, 'rgba(255,255,255,0.07)');
+          sheen.addColorStop(0.5, 'rgba(255,255,255,0.015)');
+          sheen.addColorStop(1, 'rgba(0,0,0,0.035)');
+          ctx.fillStyle = sheen;
+          ctx.fillRect(currentX - R, currentY - R, R * 2, R * 2);
+          ctx.restore();
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, R - 2, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+          ctx.lineWidth = 5;
+          ctx.shadowColor = 'rgba(0,0,0,0.5)';
+          ctx.shadowBlur = 18;
+          ctx.shadowOffsetY = 7;
+          ctx.stroke();
+          ctx.restore();
+
+          const rim = ctx.createLinearGradient(currentX - R, currentY - R, currentX + R, currentY + R);
+          rim.addColorStop(0, 'rgba(255,255,255,0.82)');
+          rim.addColorStop(0.38, 'rgba(255,255,255,0.37)');
+          rim.addColorStop(0.68, 'rgba(255,255,255,0.06)');
+          rim.addColorStop(1, 'rgba(0,0,0,0.88)');
+          ctx.beginPath();
+          ctx.arc(currentX, currentY, R - 2, 0, Math.PI * 2);
+          ctx.strokeStyle = rim;
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          ctx.drawImage(foreground, 0, 0, W, H);
+        }
+
+        function animate() {
+          frame = 0;
+          if (!visible || !ready) return;
+          currentX += (targetX - currentX) * 0.22;
+          currentY += (targetY - currentY) * 0.22;
+          if (Math.abs(targetX - currentX) < 0.15) currentX = targetX;
+          if (Math.abs(targetY - currentY) < 0.15) currentY = targetY;
+          draw();
+          const coverRect = cover.getBoundingClientRect();
+          const brandRect = document.querySelector('.brand').getBoundingClientRect();
+          const lensX = coverRect.left + currentX * coverRect.width / W;
+          const lensY = coverRect.top + currentY * coverRect.height / H;
+          const radius = R * coverRect.width / W;
+          const nearestX = Math.max(brandRect.left, Math.min(lensX, brandRect.right));
+          const nearestY = Math.max(brandRect.top, Math.min(lensY, brandRect.bottom));
+          brandLensHover = coverRect.bottom > 0 && coverRect.top < window.innerHeight &&
+            Math.hypot(lensX - nearestX, lensY - nearestY) < radius;
+          syncBrandAnimation();
+          if (brandLensHover && !brandLensTimer && brandMark.classList.contains('is-playing')) {
+            brandLensTimer = window.setTimeout(updateBrandLens, 50);
+          }
+          if (currentX !== targetX || currentY !== targetY) frame = requestAnimationFrame(animate);
+        }
+
+        function resetLens() {
+          if (!hoverQuery.matches || !ready) return;
+          targetX = defaultX;
+          targetY = defaultY;
+          setMotionMode('idle');
+          if (!frame) frame = requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('pointermove', (event) => {
+          if (!hoverQuery.matches || event.pointerType !== 'mouse' || !ready) return;
+          const rect = cover.getBoundingClientRect();
+          if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) {
+            resetLens();
+            return;
+          }
+          const x = (event.clientX - rect.left) * W / rect.width;
+          const y = (event.clientY - rect.top) * H / rect.height;
+          targetX = Math.min(W - R, Math.max(R, x));
+          targetY = Math.min(H - R, Math.max(R, y));
+          setMotionMode(x < 720 ? 'drawing' : 'looking');
+          if (!visible) {
+            currentX = targetX;
+            currentY = targetY;
+            visible = true;
+            canvas.classList.add('is-visible');
+          }
+          if (!frame) frame = requestAnimationFrame(animate);
+        });
+
+        window.addEventListener('blur', resetLens);
+
+        Promise.all([image.decode(), person.decode()]).then(() => {
+          rebuildForeground();
+          resize();
+          if (ready) {
+            visible = true;
+            draw();
+            canvas.classList.add('is-visible');
+            loadMotion();
+          }
+        }).catch(() => {});
+        new ResizeObserver(resize).observe(cover);
+      })();
+    </script>
+  </body>
+</html>
